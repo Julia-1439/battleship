@@ -6,6 +6,16 @@ describe("public side effects", () => {
   test("length range error", () => expect(() => new Ship(0)).toThrow(RangeError));
 });
 
+<<<<<<< HEAD
+=======
+describe("errors", () => {
+  test("length type error", () =>
+    expect(() => new Ship("4")).toThrow(TypeError));
+  test("length range error", () =>
+    expect(() => new Ship(0)).toThrow(RangeError));
+});
+
+>>>>>>> bddbf94 (Test: Ship class)
 describe("hitting & sinking", () => {
   test("hit, no sink", () => {
     const ship = new Ship(3);
@@ -27,4 +37,8 @@ describe("hitting & sinking", () => {
     ship.hit();
     expect(ship.isSunk()).toBe(true);
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> bddbf94 (Test: Ship class)
