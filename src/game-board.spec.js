@@ -117,9 +117,24 @@ describe("receiving attacks", () => {
   });
 
   describe("errors", () => {
-    test.todo("bad coordinates");    
-    test.todo("error: already hit this spot: ship present");
-    test.todo("error: already hit this spot: no ship");
-  })
-
+    describe("bad coordinates", () => {
+      test("column case (1)", () => {
+        expect(() => gb.receiveAttack(-1, 0)).toThrow(RangeError);
+      });
+      test("row case (1)", () => {
+        expect(() => gb.receiveAttack(0, 10)).toThrow(RangeError);
+      });
+    });
+    describe("already attacked this spot", () => {
+      test("no ship present", () => {
+        gb.receiveAttack(8, 6);
+        expect(() => gb.receiveAttack(8, 6)).toThrow(Error);
+      });
+      test("ship present", () => {
+        gb.receiveAttack(4, 6);
+        expect(() => gb.receiveAttack(4, 6)).toThrow(Error);
+        expect(() => gb.board[4][6].ship.isSunk());
+      });
+    });
+  });
 });

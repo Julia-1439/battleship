@@ -6,7 +6,7 @@ class GameBoard {
   #numShips;
   constructor() {
     this.#board = Array.from({ length: GameBoard.BOARD_LEN }, () =>
-      Array.from({ length: GameBoard.BOARD_LEN }, () => new Cell()),
+      Array.from({ length: GameBoard.BOARD_LEN }, () => createCell()),
     );
   }
 
@@ -50,16 +50,29 @@ class GameBoard {
   }
 
   receiveAttack(col, row) {
+    if (
+      col >= GameBoard.BOARD_LEN ||
+      col < 0 ||
+      row >= GameBoard.BOARD_LEN ||
+      row < 0
+    )
+      throw new RangeError("Index is out of bounds");
     const cell = this.#board[col][row];
-    if (cell.ship) cell.ship.hit();
+    if (cell.isAttacked) throw new Error("This cell was aleady attacked"); 
     cell.isAttacked = true;
+    if (cell.ship) cell.ship.hit();
   }
 }
 
 // private member of this module => no need to test
-class Cell {
+function createCell() {
   isAttacked = false;
   ship = null;
+
+  return {
+    isAttacked,
+    ship,
+  };
 }
 
 export default GameBoard;
