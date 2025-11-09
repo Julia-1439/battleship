@@ -2,13 +2,10 @@ import Ship from "./ship";
 
 class GameBoard {
   static BOARD_LEN = 10;
-  #board;
-  #numShips;
-  constructor() {
-    this.#board = Array.from({ length: GameBoard.BOARD_LEN }, () =>
-      Array.from({ length: GameBoard.BOARD_LEN }, () => createCell()),
-    );
-  }
+  #board = Array.from({ length: GameBoard.BOARD_LEN }, () =>
+    Array.from({ length: GameBoard.BOARD_LEN }, () => createCell()),
+  );
+  #numShips = 0;
 
   get board() {
     return [...this.#board];
@@ -47,6 +44,7 @@ class GameBoard {
         cell.ship = ship;
       }
     }
+    this.#numShips++;
   }
 
   receiveAttack(col, row) {
@@ -58,9 +56,16 @@ class GameBoard {
     )
       throw new RangeError("Index is out of bounds");
     const cell = this.#board[col][row];
-    if (cell.isAttacked) throw new Error("This cell was aleady attacked"); 
+    if (cell.isAttacked) throw new Error("This cell was aleady attacked");
     cell.isAttacked = true;
-    if (cell.ship) cell.ship.hit();
+    if (cell.ship) {
+      cell.ship.hit();
+      if (cell.ship.isSunk()) this.#numShips--;
+    } 
+  }
+
+  allShipsSunken() {
+    return this.#numShips === 0;
   }
 }
 

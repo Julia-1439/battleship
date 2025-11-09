@@ -103,16 +103,32 @@ describe("receiving attacks", () => {
       gb.receiveAttack(4, 4);
       gb.receiveAttack(4, 5);
       expect(gb.board[4][4].ship.isSunk()).toBe(false);
+      expect(gb.allShipsSunken()).toBe(false);
     });
     test("a ship is sunk", () => {
       gb.receiveAttack(4, 4);
       gb.receiveAttack(4, 5);
       gb.receiveAttack(4, 6);
       expect(gb.board[4][4].ship.isSunk()).toBe(true);
+      expect(gb.allShipsSunken()).toBe(true);
     });
     test("miss a shot", () => {
       gb.receiveAttack(7, 7);
       expect(gb.board[7][7].isAttacked).toBe(true);
+      expect(gb.allShipsSunken()).toBe(false);
+    });
+    test("all ships sunken", () => {
+      gb.placeShip(new Ship(4), 0, 1, "h");
+      gb.receiveAttack(0, 1);
+      gb.receiveAttack(1, 1);
+      gb.receiveAttack(2, 1);
+      gb.receiveAttack(3, 1);
+
+      gb.receiveAttack(4, 4);
+      gb.receiveAttack(4, 5);
+      gb.receiveAttack(4, 6);
+
+      expect(gb.allShipsSunken()).toBe(true);
     });
   });
 
