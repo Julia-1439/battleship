@@ -9,6 +9,7 @@
   font-family:'Times New Roman', Times, serif;
 
   --standard-padding: 16px;
+  --palette-accent: darkslategray;
 }
 
 body {
@@ -48,8 +49,50 @@ html {
   --cell-size: 2rem;
 }
 
+#setup-game-dialog {
+  margin: 20vh auto auto auto;
+  width: max(40%, 275px);
+  padding: var(--big-padding);
+  border-color: var(--palette-accent); 
+  border-radius: 8px;
+  box-shadow: 0px 2px 11px -3px gray;
+}
+
+dialog::backdrop {
+  background-color: #000000;
+  opacity: 0.3;
+}
+
+#setup-game-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--standard-padding);
+}
+
+.half-cell {
+  width: max(45%, 115px);
+}
+
+.full-cell {
+  flex: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.text-center-align {
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  vertical-align: -1px; /* adjusts the position of the checkboxes on the text baseline */
+  accent-color: var(--palette-accent);
+}
+
 body {
   margin: 0;
+  background: #AEE8EE;
+  background: linear-gradient(91deg, rgba(174, 232, 238, 1) 0%, rgba(159, 214, 244, 1) 58%, rgba(141, 193, 252, 1) 100%);
 }
 
 header {
@@ -60,7 +103,7 @@ header {
   padding: 16px 32px;
   height: 4rem;
   font-size: 1.5rem;
-  background-color: darkslategray;
+  background-color: var(--palette-accent);
   color: white;
 }
 
@@ -68,6 +111,7 @@ header h1 {
   font-size: inherit;
   margin: 0;
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 nav {
@@ -86,9 +130,9 @@ nav {
   color: inherit;
 }
 
-body {
-  background: #AEE8EE;
-  background: linear-gradient(91deg, rgba(174, 232, 238, 1) 0%, rgba(159, 214, 244, 1) 58%, rgba(141, 193, 252, 1) 100%);
+#github-link span {
+  display: inline-block; 
+  width: 1rem;
 }
 
 .player-battlefields {

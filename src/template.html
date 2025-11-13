@@ -7,10 +7,21 @@
   </head>
   <body>
     <header>
-      <div><h1>Battleships</h1></div>
+      <div><h1>battleships</h1></div>
       <nav>
         <div><button id="start-game">Start Game</button></div>
-        <div><a href="https://github.com/Julia-1439/battleship" id="github-link">Github</a></div>
+        <div>
+          <a
+            href="https://github.com/Julia-1439/battleship"
+            id="github-link"
+            target="_blank"
+            >
+            Github
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
+            </span>
+          </a>
+        </div>
       </nav>
     </header>
     <main>
@@ -355,4 +366,43 @@
       </div>
     </main>
   </body>
+  <dialog id="setup-game-dialog">
+    <form method="dialog" id="setup-game-form">
+      <label for="player-1-name" class="half-cell text-center-align"
+        >Player 1 Name</label
+      >
+      <input
+        type="text"
+        name="player1Name"
+        id="player-1-name"
+        class="half-cell"
+        required
+      />
+      <label for="player-2-name" class="half-cell text-center-align"
+        >Player 2 Name</label
+      >
+      <input
+        type="text"
+        name="player2Name"
+        id="player-2-name"
+        class="half-cell"
+      />
+      <label for="is-computer-player" class="full-cell"
+        ><input
+          type="checkbox"
+          name="isComputerPlayer"
+          id="is-computer-player"
+        />&nbsp; Or play against computer</label
+      >
+      <div class="full-cell">
+        <button type="submit">Begin Game!</button>
+        <button type="button">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+  <script>
+    const doc = document;
+    const setupGameDialog = doc.querySelector("#setup-game-dialog");
+    setupGameDialog.showModal();
+  </script>
 </html>
