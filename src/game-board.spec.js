@@ -10,17 +10,17 @@ describe("placing ships", () => {
   describe("no out-of-bounds, no collisions", () => {
     test("length 2, horizontal", () => {
       gb.placeShip(2, 0, 0, "h");
-      expect(gb.board[0][0].ship).toBeInstanceOf(Ship);
-      expect(gb.board[1][0].ship).toBeInstanceOf(Ship);
-      expect(gb.board[2][0].ship).not.toBeInstanceOf(Ship);
+      expect(gb.state[0][0].ship).toBeInstanceOf(Ship);
+      expect(gb.state[1][0].ship).toBeInstanceOf(Ship);
+      expect(gb.state[2][0].ship).not.toBeInstanceOf(Ship);
     });
 
     test("length 3, vertical", () => {
       gb.placeShip(3, 6, 3, "v");
-      expect(gb.board[6][3].ship).toBeInstanceOf(Ship);
-      expect(gb.board[6][4].ship).toBeInstanceOf(Ship);
-      expect(gb.board[6][5].ship).toBeInstanceOf(Ship);
-      expect(gb.board[6][6].ship).not.toBeInstanceOf(Ship);
+      expect(gb.state[6][3].ship).toBeInstanceOf(Ship);
+      expect(gb.state[6][4].ship).toBeInstanceOf(Ship);
+      expect(gb.state[6][5].ship).toBeInstanceOf(Ship);
+      expect(gb.state[6][6].ship).not.toBeInstanceOf(Ship);
     });
   });
 
@@ -102,19 +102,19 @@ describe("receiving attacks", () => {
     test("a ship is not sunk", () => {
       gb.receiveAttack(4, 4);
       gb.receiveAttack(4, 5);
-      expect(gb.board[4][4].ship.isSunk()).toBe(false);
+      expect(gb.state[4][4].ship.isSunk()).toBe(false);
       expect(gb.allShipsSunken()).toBe(false);
     });
     test("a ship is sunk", () => {
       gb.receiveAttack(4, 4);
       gb.receiveAttack(4, 5);
       gb.receiveAttack(4, 6);
-      expect(gb.board[4][4].ship.isSunk()).toBe(true);
+      expect(gb.state[4][4].ship.isSunk()).toBe(true);
       expect(gb.allShipsSunken()).toBe(true);
     });
     test("miss a shot", () => {
       gb.receiveAttack(7, 7);
-      expect(gb.board[7][7].isAttacked).toBe(true);
+      expect(gb.state[7][7].isAttacked).toBe(true);
       expect(gb.allShipsSunken()).toBe(false);
     });
     test("all ships sunken", () => {
@@ -149,7 +149,7 @@ describe("receiving attacks", () => {
       test("ship present", () => {
         gb.receiveAttack(4, 6);
         expect(() => gb.receiveAttack(4, 6)).toThrow(Error);
-        expect(() => gb.board[4][6].ship.isSunk());
+        expect(() => gb.state[4][6].ship.isSunk());
       });
     });
   });

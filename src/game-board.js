@@ -7,7 +7,7 @@ class GameBoard {
   );
   #numShips = 0;
 
-  get board() {
+  get state() {
     return [...this.#board];
   }
 
