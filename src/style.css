@@ -100,7 +100,7 @@ header {
   justify-content: space-between;
   gap: var(--big-padding);
   flex-wrap: no-wrap;
-  padding: 16px 32px;
+  padding: var(--standard-padding) var(--big-padding);
   height: 4rem;
   font-size: 1.5rem;
   background-color: var(--palette-accent);
