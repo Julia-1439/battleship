@@ -49,6 +49,10 @@ html {
   --cell-size: 2rem;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 #setup-game-dialog {
   margin: 20vh auto auto auto;
   width: max(40%, 275px);
@@ -119,10 +123,11 @@ nav {
   gap: var(--big-padding);
 }
 
-#start-game {
+#setup-game-btn {
   background-color: green;
   border-color: white;
   cursor: pointer;
+  width: max-content;
 }
 
 #github-link {
