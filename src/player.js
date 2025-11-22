@@ -1,17 +1,19 @@
 import GameBoard from "./game-board";
 
-/**
- * 
- * @param {String} type "human" or "computer"
- * @returns {Object}
- */
-function createPlayer(type) {
+function humanPlayer(name) {
   return {
-    type,
+    name,
+    gameBoard: new GameBoard(),
+  };
+}
+
+function computerPlayer() {
+  return {
     gameBoard: new GameBoard(),
   };
 }
 
 export {
-  createPlayer,
+  humanPlayer,
+  computerPlayer,
 };
