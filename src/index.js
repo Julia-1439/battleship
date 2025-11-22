@@ -1,2 +1,1 @@
-import "./style.css";
-import "./gameControl.js";
+import "./ui-control.js";
