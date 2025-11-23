@@ -5,11 +5,12 @@ let player1;
 let player2;
 let turn = null;
 export const pubSub = new PubSub(); // to be used by a UI controller to recognize game events, as defined in `events`
-export const events = { // replace with symbols?
-  GAME_START: "GAME_START",
-  SUCCESSFUL_ATTACK: "SUCCESSFUL_ATTACK", 
-  GAME_END: "GAME_END",
-};
+export const events = Object.freeze({
+  GAME_START: Symbol("GAME_START"),
+  TURN_SWITCH: Symbol("TURN_SWITCH"),
+  ATTACK_SUCCESSFUL: Symbol("ATTACK_SUCCESSFUL"), 
+  GAME_END: Symbol("GAME_END"),
+});
 
 function hasGameBegun() {
   return turn !== null;
@@ -57,13 +58,15 @@ export function playTurn(col, row) {
   } catch (err) {
     throw err;
   }
+  pubSub.publish(events.SUCCESSFUL_ATTACK,);
+
+  toggleTurn(); 
+  pubSub.publish(events.TURN_SWITCH,);
+
   if (opponent.gameBoard.allShipsSunken()) {
     endGame();
-    pubSub.publish(events.GAME_END);
+    pubSub.publish(events.GAME_END,);
   }
-  
-  toggleTurn(); 
-  pubSub.publish(events.SUCCESSFUL_ATTACK,);
 }
 
 function endGame() { 
