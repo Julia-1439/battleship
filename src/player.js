@@ -1,25 +1,30 @@
 import GameBoard from "./game-board";
 
-function humanPlayer(name) {
-  return {
-    name,
-    gameBoard: new GameBoard(),
-  };
-}
-
-function computerPlayer() {
+export function humanPlayer(name) {
   return Object.assign(
     {},
-    { gameBoard: new GameBoard() },
+    { name },
+    player(),
+  );
+}
+
+export function computerPlayer() {
+  return Object.assign(
+    {},
+    player(),
     autoAttacker(),
   );
 }
 
-// @todo refactor to use function composition for gameboard
+function player() {
+  return {
+    gameBoard: new GameBoard(),
+  };
+}
 
 function autoAttacker() {
   const calcRandomAttack = () => {
-    let [i, j] = Array.from({ length: 2 }, () =>
+    const [i, j] = Array.from({ length: 2 }, () =>
       Math.floor(GameBoard.BOARD_LEN * Math.random()),
     );
     return [i, j];
@@ -29,5 +34,3 @@ function autoAttacker() {
     calcRandomAttack,
   };
 }
-
-export { humanPlayer, computerPlayer };
