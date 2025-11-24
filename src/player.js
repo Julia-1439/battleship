@@ -8,12 +8,26 @@ function humanPlayer(name) {
 }
 
 function computerPlayer() {
+  return Object.assign(
+    {},
+    { gameBoard: new GameBoard() },
+    autoAttacker(),
+  );
+}
+
+// @todo refactor to use function composition for gameboard
+
+function autoAttacker() {
+  const calcRandomAttack = () => {
+    let [i, j] = Array.from({ length: 2 }, () =>
+      Math.floor(GameBoard.BOARD_LEN * Math.random()),
+    );
+    return [i, j];
+  };
+
   return {
-    gameBoard: new GameBoard(),
+    calcRandomAttack,
   };
 }
 
-export {
-  humanPlayer,
-  computerPlayer,
-};
+export { humanPlayer, computerPlayer };

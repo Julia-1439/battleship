@@ -1,4 +1,4 @@
-import { humanPlayer, computerPlayer } from "./player.js";
+import { humanPlayer, computerPlayer, } from "./player.js";
 import GameBoard from "./game-board.js";
 
 describe("player creation", () => {
@@ -11,5 +11,13 @@ describe("player creation", () => {
   test("computer player", () => {
     const player2 = computerPlayer();
     expect(player2.gameBoard).toBeInstanceOf(GameBoard);
+  });
+});
+
+describe("computer calculating attack", () => {
+  const player = computerPlayer();
+  test("generates an ordered pair", () => {
+    expect(typeof player.calcRandomAttack()[0]).toBe("number");
+    expect(typeof player.calcRandomAttack()[1]).toBe("number");
   });
 });
