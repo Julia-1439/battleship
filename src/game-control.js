@@ -3,11 +3,12 @@ import PubSub from "./pub-sub.js";
 
 let player1;
 let player2;
+let isPlayer2Computer;
 let turn = null;
 export const pubSub = new PubSub(); // to be used by a UI controller to receive game events as they happen
 export const events = Object.freeze({
   TURN_SWITCH: Symbol("TURN_SWITCH"),
-  BOARD_UPDATE: Symbol("BOARD_UPDATE"), 
+  BOARD_UPDATE: Symbol("BOARD_UPDATE"),
   GAME_END: Symbol("GAME_END"),
 });
 
@@ -22,25 +23,27 @@ function toggleTurn() {
 }
 
 export function createPlayers(player1Name, player2Name) {
-  if (hasBegun()) 
-    throw new Error("A game is already in progress");
+  if (hasBegun()) throw new Error("A game is already in progress");
 
   player1 = humanPlayer(player1Name);
-  player2 =
-    player2Name !== undefined ? humanPlayer(player2Name) : computerPlayer();
+  isPlayer2Computer = player2Name === undefined;
+  player2 = isPlayer2Computer ? computerPlayer() : humanPlayer(player2Name);
 }
 
 export function start() {
-  if (player1 === undefined || player2 === undefined) 
+  if (player1 === undefined || player2 === undefined)
     throw new Error("Players must be created first");
-  if (hasBegun()) 
-    throw new Error("A game is already in progress");
+  if (hasBegun()) throw new Error("A game is already in progress");
 
   placeShips();
   turn = 1;
 
   pubSub.publish(events.BOARD_UPDATE, { player1, player2 });
   pubSub.publish(events.TURN_SWITCH, turn);
+  if (isPlayer2Computer)
+    pubSub.subscribe(events.TURN_SWITCH, (turn) => {
+      if (turn === 2) computerPlayTurn();
+    });
 }
 
 // @todo left as public to enable randomized placements in the future
@@ -66,17 +69,31 @@ export function playTurn(col, row) {
   });
 
   if (opponent.gameBoard.allShipsSunken()) {
-    const winner = turn === 1 ? player1 : player2; 
+    const winner = turn === 1 ? player1 : player2;
     end();
     pubSub.publish(events.GAME_END, winner);
     return;
   }
 
-  toggleTurn(); 
+  toggleTurn();
   pubSub.publish(events.TURN_SWITCH, turn);
 }
 
-export function end() { 
+export function end() {
   turn = null;
 }
 
+function computerPlayTurn() {
+  let attackCoords;
+  let foundValidAttack = false;
+  while (!foundValidAttack) {
+    try {
+      attackCoords = player2.calculateAttack();
+      foundValidAttack = true;
+    } catch (err) {
+      continue;
+    }
+  }
+  const [col, row] = attackCoords;
+  playTurn(col, row);
+}

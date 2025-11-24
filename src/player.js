@@ -11,6 +11,7 @@ export function humanPlayer(name) {
 export function computerPlayer() {
   return Object.assign(
     {},
+    { isComputer: true, },
     player(),
     autoAttacker(),
   );
