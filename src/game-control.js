@@ -65,13 +65,15 @@ export function playTurn(col, row) {
     player2,
   });
 
+  if (opponent.gameBoard.allShipsSunken()) {
+    const winner = turn === 1 ? player1 : player2; 
+    end();
+    pubSub.publish(events.GAME_END, winner);
+    return;
+  }
+
   toggleTurn(); 
   pubSub.publish(events.TURN_SWITCH, turn);
-
-  if (opponent.gameBoard.allShipsSunken()) {
-    end();
-    pubSub.publish(events.GAME_END,);
-  }
 }
 
 export function end() { 
