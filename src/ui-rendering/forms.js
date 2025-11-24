@@ -1,4 +1,4 @@
-import * as gameControl from "./game-control.js";
+import * as game from "../game-control.js";
 
 const setupBtn = document.querySelector("#setup-game-btn");
 const dialog = document.querySelector("#setup-game-dialog");
@@ -15,7 +15,8 @@ form.addEventListener("submit", () => {
   const formData = new FormData(form);
   const player1Name = formData.get("player1Name");
   const player2Name = formData.get("player2Name");
-  gameControl.startGame(player1Name, player2Name);
+  game.createPlayers(player1Name, player2Name);
+  game.start(player1Name, player2Name);
   form.reset();
 });
 cancelBtn.addEventListener("click", () => {
