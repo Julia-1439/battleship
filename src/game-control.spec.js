@@ -1,9 +1,15 @@
+/**
+ * More of an integration test than unit test, I believe
+ */
+
 import * as game from "./game-control.js";
+import GameBoard from "./game-board.js";
 
 const mockProcessor = jest.fn((data) => data);
+const BOARD_LEN = GameBoard.BOARD_LEN;
 
 afterEach(() => {
-  game.end();
+  game.clear();
   jest.clearAllMocks();
 });
 
@@ -18,10 +24,6 @@ describe("setting up a game", () => {
     expect(mockProcessor).toHaveBeenCalledTimes(2); 
     expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); 
     expect(mockProcessor).toHaveBeenCalledWith(1);
-
-    // clean up
-    game.pubSub.unsubscribe(game.events.BOARD_UPDATE, subId1);
-    game.pubSub.unsubscribe(game.events.TURN_SWITCH, subId2);
   });
 
   test("unable to start game before player creation", () => {
@@ -46,23 +48,38 @@ describe("playing a game to end", () => {
     game.createPlayers("Alice", "Bob");
     game.start();
 
-    for (let i = 0; i < 10; i++) {
-      for (let j = 0; j < 10; j++) {
+    outer: for (let i = 0; i < BOARD_LEN; i++) {
+      for (let j = 0; j < BOARD_LEN; j++) {
         try {
-          game.playTurn(i, j);
-          game.playTurn(i, j);
+          game.playTurn(i, j); // player 1's turn
+          game.playTurn(i, j); // player 2's turn
         } catch (err) { // stop playing turns once the game has ended
-          break;
+          break outer;
         }
       }
     }
 
     expect(mockProcessor).toHaveBeenCalledTimes(1); 
-    expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); 
-
-    // clean up
-    game.pubSub.unsubscribe(game.events.GAME_END, subId);
+    expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); // outgoing command messages: test only if they were sent, rather than their effects
   });
 
-  test.todo("one human, one computer");
+  test("one human, one computer", () => {
+    const subId = game.pubSub.subscribe(game.events.GAME_END, mockProcessor);
+
+    game.createPlayers("Alice",);
+    game.start();
+
+    outer: for (let i = 0; i < BOARD_LEN; i++) {
+      for (let j = 0; j < BOARD_LEN; j++) {
+        try {
+          game.playTurn(i, j);
+        } catch (err) { // stop playing turns once the game has ended
+          break outer;
+        }
+      }
+    }
+
+    expect(mockProcessor).toHaveBeenCalledTimes(1);
+    expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); // outgoing command messages: test only if they were sent, rather than their effects
+  });
 });

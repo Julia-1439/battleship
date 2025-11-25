@@ -2,16 +2,13 @@ import GameBoard from "./game-board";
 
 export function humanPlayer(name) {
   return Object.assign(
-    {},
-    { name },
     player(),
+    { name },
   );
 }
 
 export function computerPlayer() {
   return Object.assign(
-    {},
-    { isComputer: true, },
     player(),
     autoAttacker(),
   );

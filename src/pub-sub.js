@@ -11,6 +11,11 @@ export default class PubSub {
     this.#subscriberId = 0;
   }
 
+  clear() {
+    this.#events.clear();
+    this.#subscriberId = 0;
+  }
+
   subscribe(event, callback) {
     if (!this.#events.has(event)) this.#events.set(event, new Set());
     const subscribers = this.#events.get(event);
