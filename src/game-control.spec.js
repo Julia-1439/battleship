@@ -43,7 +43,7 @@ describe("setting up a game", () => {
 
 describe("playing a game to end", () => {
   test("two humans", () => {
-    const subId = game.pubSub.subscribe(game.events.GAME_END, mockProcessor); 
+    const subId = game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor); 
 
     game.createPlayers("Alice", "Bob");
     game.start();
@@ -64,7 +64,7 @@ describe("playing a game to end", () => {
   });
 
   test("one human, one computer", () => {
-    const subId = game.pubSub.subscribe(game.events.GAME_END, mockProcessor);
+    const subId = game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor);
 
     game.createPlayers("Alice",);
     game.start();

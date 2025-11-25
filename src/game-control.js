@@ -8,7 +8,7 @@ export const pubSub = new PubSub(); // to be used by a UI controller to receive 
 export const events = Object.freeze({
   TURN_SWITCH: Symbol("TURN_SWITCH"),
   BOARD_UPDATE: Symbol("BOARD_UPDATE"),
-  GAME_END: Symbol("GAME_END"),
+  WINNER_DECLARED: Symbol("WINNER_DECLARED"),
 });
 
 function hasBegun() {
@@ -107,7 +107,7 @@ export function clear() {
 
 function handleWin() {
   const winner = turn === 1 ? player1 : player2;
-  pubSub.publish(events.GAME_END, winner);
+  pubSub.publish(events.WINNER_DECLARED, winner);
 
   setTurn(null);
   pubSub.clear();
