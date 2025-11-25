@@ -16,6 +16,7 @@ function hasBegun() {
 }
 
 function setTurn(val) {
+  if (![1, 2, null].includes(val)) throw new Error("Invalid turn value");
   turn = val;
   pubSub.publish(events.TURN_SWITCH, turn);
 }
