@@ -118,9 +118,11 @@ header h1 {
   text-transform: uppercase;
 }
 
-nav {
+nav ul {
   display: flex;
   gap: var(--big-padding);
+  margin: 0;
+  list-style: none;
 }
 
 #setup-game-btn {
