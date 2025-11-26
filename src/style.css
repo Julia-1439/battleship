@@ -158,7 +158,7 @@ nav ul {
 }
 
 .your-ships[data-active-game] {
-  filter: opacity(0.35);
+  /* filter: opacity(0.35); */
 }
 
 table {
@@ -166,6 +166,11 @@ table {
   width: min-content;
 
   border-collapse: collapse;
+}
+
+caption {
+  position: relative;
+  left: calc(var(--cell-size) / 2);
 }
 
 th,
