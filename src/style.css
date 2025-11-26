@@ -95,8 +95,8 @@ input[type="checkbox"] {
 
 body {
   margin: 0;
-  background: #AEE8EE;
-  background: linear-gradient(91deg, rgba(174, 232, 238, 1) 0%, rgba(159, 214, 244, 1) 58%, rgba(141, 193, 252, 1) 100%);
+  background: #356063;
+  background: linear-gradient(91deg, rgba(53, 96, 99, 1) 0%, rgba(51, 112, 145, 1) 58%, rgba(47, 117, 196, 1) 100%);
 }
 
 header {
