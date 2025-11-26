@@ -1,5 +1,5 @@
-import GameBoard from "./game-board";
-import Ship from "./ship";
+import GameBoard from "../game-board";
+import Ship from "../ship";
 
 let gb;
 beforeEach(() => {

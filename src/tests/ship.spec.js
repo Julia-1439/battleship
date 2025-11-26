@@ -1,4 +1,4 @@
-import Ship from "./ship.js";
+import Ship from "../ship.js";
 
 describe("public side effects", () => {
   test("length is set", () => expect(new Ship(4).length).toBe(4));

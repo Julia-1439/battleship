@@ -1,5 +1,5 @@
-import { humanPlayer, computerPlayer, } from "./player.js";
-import GameBoard from "./game-board.js";
+import { humanPlayer, computerPlayer, } from "../player.js";
+import GameBoard from "../game-board.js";
 
 describe("player creation", () => {
   test("human player", () => {

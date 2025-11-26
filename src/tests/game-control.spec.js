@@ -2,8 +2,8 @@
  * More of an integration test than unit test, I believe
  */
 
-import * as game from "./game-control.js";
-import GameBoard from "./game-board.js";
+import * as game from "../game-control.js";
+import GameBoard from "../game-board.js";
 
 const mockProcessor = jest.fn((data) => data);
 const BOARD_LEN = GameBoard.BOARD_LEN;
