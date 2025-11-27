@@ -59,7 +59,10 @@ export function placeShips() {
   player2.gameBoard.placeShip(4, 6, 0, "h");
   player2.gameBoard.placeShip(2, 1, 1, "v");
 
-  pubSub.publish(events.BOARD_UPDATE, { player1, player2 });
+  pubSub.publish(events.BOARD_UPDATE, {
+    player1Board: player1.gameBoard.state,
+    player2Board: player2.gameBoard.state,
+  });
 }
 
 export function playTurn(col, row) {
@@ -73,8 +76,8 @@ export function playTurn(col, row) {
     throw err;
   }
   pubSub.publish(events.BOARD_UPDATE, {
-    player1,
-    player2,
+    player1Board: player1.gameBoard.state,
+    player2Board: player2.gameBoard.state,
   });
 
   // Assess game state
