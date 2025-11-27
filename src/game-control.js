@@ -1,8 +1,8 @@
 import { humanPlayer, computerPlayer } from "./player.js";
 import PubSub from "./pub-sub.js";
 
-let player1;
-let player2;
+let p1;
+let p2;
 let turn = null;
 export const pubSub = new PubSub(); // to be used by a UI controller to receive game events as they happen
 export const events = Object.freeze({
@@ -27,15 +27,15 @@ function toggleTurn() {
   pubSub.publish(events.TURN_SWITCH, turn);
 }
 
-export function createPlayers(player1Name="Unnamed Person", player2Name) {
+export function createPlayers(p1Name="Unnamed Person", p2Name) {
   if (hasBegun()) throw new Error("A game is already in progress");
 
-  player1 = humanPlayer(player1Name);
+  p1 = humanPlayer(p1Name);
 
-  if (player2Name) {
-    player2 = humanPlayer(player2Name);
+  if (p2Name) {
+    p2 = humanPlayer(p2Name);
   } else {
-    player2 = computerPlayer();
+    p2 = computerPlayer();
     pubSub.subscribe(events.TURN_SWITCH, (turn) => {
       if (turn === 2) computerPlayTurn();
     });
@@ -43,7 +43,7 @@ export function createPlayers(player1Name="Unnamed Person", player2Name) {
 }
 
 export function start() {
-  if (player1 === undefined || player2 === undefined)
+  if (p1 === undefined || p2 === undefined)
     throw new Error("Players must be created first");
   if (hasBegun()) throw new Error("A game is already in progress");
 
@@ -53,15 +53,15 @@ export function start() {
 
 // @todo left as public to enable randomized placements in the future
 export function placeShips() {
-  player1.gameBoard.placeShip(4, 0, 0, "h");
-  player1.gameBoard.placeShip(2, 4, 4, "v");
+  p1.gameBoard.placeShip(4, 0, 0, "h");
+  p1.gameBoard.placeShip(2, 4, 4, "v");
 
-  player2.gameBoard.placeShip(4, 6, 0, "h");
-  player2.gameBoard.placeShip(2, 1, 1, "v");
+  p2.gameBoard.placeShip(4, 6, 0, "h");
+  p2.gameBoard.placeShip(2, 1, 1, "v");
 
   pubSub.publish(events.BOARD_UPDATE, {
-    player1Board: player1.gameBoard.state,
-    player2Board: player2.gameBoard.state,
+    p1Board: p1.gameBoard.state,
+    p2Board: p2.gameBoard.state,
   });
 }
 
@@ -69,15 +69,15 @@ export function playTurn(col, row) {
   if (!hasBegun()) throw new Error("A game has not started yet");
 
   // Attempt attack
-  const opponent = turn === 1 ? player2 : player1;
+  const opponent = turn === 1 ? p2 : p1;
   try {
     opponent.gameBoard.receiveAttack(col, row);
   } catch (err) {
     throw err;
   }
   pubSub.publish(events.BOARD_UPDATE, {
-    player1Board: player1.gameBoard.state,
-    player2Board: player2.gameBoard.state,
+    p1Board: p1.gameBoard.state,
+    p2Board: p2.gameBoard.state,
   });
 
   // Assess game state
@@ -91,7 +91,7 @@ export function playTurn(col, row) {
 function computerPlayTurn() {
   let foundValidAttack = false;
   while (!foundValidAttack) {
-    const [col, row] = player2.calcRandomAttack();
+    const [col, row] = p2.calcRandomAttack();
     try {
       playTurn(col, row);
     } catch (err) {
@@ -102,15 +102,15 @@ function computerPlayTurn() {
 }
 
 export function clear() {
-  player1 = undefined;
-  player2 = undefined;
+  p1 = undefined;
+  p2 = undefined;
 
   setTurn(null);
   pubSub.clear();
 }
 
 function handleWin() {
-  const winner = turn === 1 ? player1 : player2;
+  const winner = turn === 1 ? p1 : p2;
   pubSub.publish(events.WINNER_DECLARED, winner);
 
   setTurn(null);
