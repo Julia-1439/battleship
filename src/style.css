@@ -7,9 +7,6 @@
 *::after {
   box-sizing: border-box;
   font-family:'Times New Roman', Times, serif;
-
-  --standard-padding: 16px;
-  --palette-accent: darkslategray;
 }
 
 body {
@@ -43,10 +40,12 @@ textarea {
 
 html {
   /* Custom CSS properties */
+  --standard-padding: 16px;
   --big-padding: 32px;
   --standard-padding: 16px;
   --minor-padding: 6px;
   --cell-size: 2rem;
+  --palette-accent: darkslategray;
 }
 
 .invisible {
@@ -229,11 +228,11 @@ td {
   background-color: #FFFFCC;
 }
 
-.your-ships .landed-hit {
+.your-ships .has-ship.is-attacked {
   background-color: #FFCCCC;
 }
 
-.your-attacks .landed-hit {
+.your-attacks .has-ship.is-attacked {
   background-color: #CCFFCC;
 }
 
@@ -243,18 +242,18 @@ td {
   font-size: 1.5rem;
 }
 
-.your-ships .landed-hit::before {
+.has-ship.is-attacked::before {
   content: "×";
   font-size: 1.5rem;
   color: red;
   
 }
 
-.your-attacks .landed-hit {
+.your-attacks .has-ship.is-attacked {
   border: 2px solid green;
 }
 
-.your-attacks .landed-hit::before {
+.your-attacks .has-ship.is-attacked::before {
   content: "✓";
   font-size: 1.25rem;
   color: green;
