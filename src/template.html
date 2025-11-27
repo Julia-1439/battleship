@@ -31,7 +31,7 @@
         <div class="battlefields-title">
           <p>Player 1's Turn: Select a spot to attack</p>
         </div>
-        <table class="battlefield your-ships" data-active-game>
+        <table class="battlefield your-ships" data-player="1">
           <caption>Your Ships</caption>
           <colgroup>
             <col />
@@ -47,10 +47,10 @@
           </colgroup>
           <thead>
             <td class="dummy-cell">
-              <!-- <div class="ship" data-ship-uuid="123">
+              <div class="ship" data-ship-uuid="123">
                 <div class="ship-cell"></div>
                 <div class="ship-cell"></div>
-              </div> -->
+              </div>
             </td>
             <th scope="col">A</th>
             <th scope="col">B</th>
@@ -67,7 +67,7 @@
             <tr>
               <th scope="row">1</th>
               <td><button data-row="0" data-col="0" disabled class="battlefield-btn empty"></button></td>
-              <td><button data-row="0" data-col="1" disabled class="battlefield-btn has-ship is-attacked"></button></td>
+              <td><button data-row="0" data-col="1" disabled class="battlefield-btn empty"></button></td>
               <td><button data-row="0" data-col="2" disabled class="battlefield-btn empty"></button></td>
               <td><button data-row="0" data-col="3" disabled class="battlefield-btn empty"></button></td>
               <td><button data-row="0" data-col="4" disabled class="battlefield-btn empty"></button></td>
@@ -80,13 +80,9 @@
             <tr>
               <th scope="row">2</th>
               <td><button data-row="1" data-col="0" disabled class="battlefield-btn empty"></button></td>
-              <td>
-                <button data-row="1" data-col="1" disabled class="battlefield-btn has-ship"></button>
-              </td>
+              <td><button data-row="1" data-col="1" disabled class="battlefield-btn empty"></button></td>
               <td><button data-row="1" data-col="2" disabled class="battlefield-btn empty"></button></td>
-              <td>
-                <button data-row="1" data-col="3" disabled class="battlefield-btn is-attacked"></button>
-              </td>
+              <td><button data-row="1" data-col="3" disabled class="battlefield-btn empty"></button></td>
               <td><button data-row="1" data-col="4" disabled class="battlefield-btn empty"></button></td>
               <td><button data-row="1" data-col="5" disabled class="battlefield-btn empty"></button></td>
               <td><button data-row="1" data-col="6" disabled class="battlefield-btn empty"></button></td>
@@ -200,7 +196,7 @@
             </tr>
           </tbody>
         </table>
-        <table class="battlefield your-attacks">
+        <table class="battlefield your-attacks" data-player="1">
           <caption>Your Attacks</caption>
           <colgroup>
             <col />

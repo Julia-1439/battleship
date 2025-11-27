@@ -156,10 +156,6 @@ nav ul {
   text-align: center;
 }
 
-.your-ships[data-active-game] {
-  /* filter: opacity(0.35); */
-}
-
 table {
   table-layout: fixed;
   width: min-content;

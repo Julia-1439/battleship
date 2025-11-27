@@ -54,7 +54,7 @@ export function start() {
 // @todo left as public to enable randomized placements in the future
 export function placeShips() {
   p1.gameBoard.placeShip(4, 0, 0, "h");
-  p1.gameBoard.placeShip(2, 4, 4, "v");
+  p1.gameBoard.placeShip(2, 5, 4, "v");
 
   p2.gameBoard.placeShip(4, 6, 0, "h");
   p2.gameBoard.placeShip(2, 1, 1, "v");
