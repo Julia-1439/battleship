@@ -6,6 +6,8 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint ./src/*.js",
+    "format:check": "prettier --check",
+    "format:write": "prettier --write",
     "dev": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "deploy": "git subtree push --prefix dist origin gh-pages"
