@@ -216,7 +216,7 @@ td {
   cursor: default;
 }
 
-.has-ship {
+.your-ship {
   background-color: #E5E5FF;
 }
 
@@ -224,11 +224,11 @@ td {
   background-color: #FFFFCC;
 }
 
-.your-ships .has-ship.is-attacked {
+.your-ship.is-attacked {
   background-color: #FFCCCC;
 }
 
-.your-attacks .has-ship.is-attacked {
+.your-attacks .landed-hit {
   background-color: #CCFFCC;
 }
 
@@ -238,24 +238,23 @@ td {
   font-size: 1.5rem;
 }
 
-.has-ship.is-attacked::before {
+.your-ship.is-attacked::before {
   content: "×";
   font-size: 1.5rem;
   color: red;
-  
 }
 
-.your-attacks .has-ship.is-attacked {
+.your-attacks .landed-hit {
   border: 2px solid green;
 }
 
-.your-attacks .has-ship.is-attacked::before {
+.your-attacks .landed-hit::before {
   content: "✓";
   font-size: 1.25rem;
   color: green;
 }
 
-.ship {
+.ship-node {
   border: 2px solid blue;
   position: absolute;
 }

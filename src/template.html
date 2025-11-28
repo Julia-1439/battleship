@@ -47,10 +47,10 @@
           </colgroup>
           <thead>
             <td class="dummy-cell">
-              <div class="ship" data-ship-uuid="123">
+              <!-- <div class="ship" data-ship-uuid="123">
                 <div class="ship-cell"></div>
                 <div class="ship-cell"></div>
-              </div>
+              </div> -->
             </td>
             <th scope="col">A</th>
             <th scope="col">B</th>
@@ -232,7 +232,7 @@
               <td><button data-row="0" data-col="3" class="battlefield-btn empty"></button></td>
               <td><button data-row="0" data-col="4" class="battlefield-btn empty"></button></td>
               <td><button data-row="0" data-col="5" class="battlefield-btn empty"></button></td>
-              <td><button data-row="0" data-col="6" class="battlefield-btn has-ship is-attacked"></button></td>
+              <td><button data-row="0" data-col="6" class="battlefield-btn empty"></button></td>
               <td><button data-row="0" data-col="7" class="battlefield-btn empty"></button></td>
               <td><button data-row="0" data-col="8" class="battlefield-btn empty"></button></td>
               <td><button data-row="0" data-col="9" class="battlefield-btn empty"></button></td>
@@ -256,7 +256,7 @@
               <td><button data-row="2" data-col="1" class="battlefield-btn empty"></button></td>
               <td><button data-row="2" data-col="2" class="battlefield-btn empty"></button></td>
               <td><button data-row="2" data-col="3" class="battlefield-btn empty"></button></td>
-              <td><button data-row="2" data-col="4" class="battlefield-btn is-attacked"></button></td>
+              <td><button data-row="2" data-col="4" class="battlefield-btn empty"></button></td>
               <td><button data-row="2" data-col="5" class="battlefield-btn empty"></button></td>
               <td><button data-row="2" data-col="6" class="battlefield-btn empty"></button></td>
               <td><button data-row="2" data-col="7" class="battlefield-btn empty"></button></td>
@@ -370,6 +370,7 @@
         id="player-1-name"
         class="half-cell"
         required
+        autofocus
       />
       <label for="player-2-name" class="half-cell text-center-align"
         >Player 2 Name</label
