@@ -29,7 +29,8 @@
     <main>
       <div id="player-battlefields">
         <div id="status-display-container">
-          <p id="status-display">Player 1's Turn: Select a spot to attack</p>
+          <p id="status-msg"></p>
+          <button id="swap-screen-btn" class="invisible-in-flow">Swap Screen</button>
         </div>
         <table class="battlefield your-ships" data-player="1">
           <caption>Your Ships</caption>
@@ -356,6 +357,331 @@
             </tr>
           </tbody>
         </table>
+        <table class="invisible-out-flow battlefield your-ships" data-player="2">
+          <caption>Your Ships</caption>
+          <colgroup>
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+          </colgroup>
+          <thead>
+            <td class="dummy-cell">
+              <!-- <div class="ship" data-ship-uuid="123">
+                <div class="ship-cell"></div>
+                <div class="ship-cell"></div>
+              </div> -->
+            </td>
+            <th scope="col">A</th>
+            <th scope="col">B</th>
+            <th scope="col">C</th>
+            <th scope="col">D</th>
+            <th scope="col">E</th>
+            <th scope="col">F</th>
+            <th scope="col">G</th>
+            <th scope="col">H</th>
+            <th scope="col">I</th>
+            <th scope="col">J</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td><button data-row="0" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td><button data-row="1" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td><button data-row="2" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td><button data-row="3" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td><button data-row="4" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td><button data-row="5" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td><button data-row="6" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td><button data-row="7" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td><button data-row="8" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td><button data-row="9" data-col="0" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="1" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="2" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="3" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="4" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="5" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="6" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="7" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="8" disabled class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="9" disabled class="battlefield-btn empty"></button></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="invisible-out-flow battlefield your-attacks" data-player="2">
+          <caption>Your Attacks</caption>
+          <colgroup>
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+          </colgroup>
+          <thead>
+            <td class="dummy-cell"></td>
+            <th scope="col">A</th>
+            <th scope="col">B</th>
+            <th scope="col">C</th>
+            <th scope="col">D</th>
+            <th scope="col">E</th>
+            <th scope="col">F</th>
+            <th scope="col">G</th>
+            <th scope="col">H</th>
+            <th scope="col">I</th>
+            <th scope="col">J</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td><button data-row="0" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="0" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td><button data-row="1" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="1" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td><button data-row="2" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="2" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td><button data-row="3" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="3" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td><button data-row="4" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="4" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td><button data-row="5" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="5" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td><button data-row="6" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="6" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td><button data-row="7" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="7" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td><button data-row="8" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="8" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td><button data-row="9" data-col="0" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="1" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="2" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="3" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="4" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="5" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="6" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="7" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="8" class="battlefield-btn empty"></button></td>
+              <td><button data-row="9" data-col="9" class="battlefield-btn empty"></button></td>
+            </tr>
+          </tbody>
+        </table>        
       </div>
     </main>
   </body>

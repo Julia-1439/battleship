@@ -1,3 +1,4 @@
 import "./style.css";
-import "./ui-rendering/curr-player-boards.js";
 import "./ui-rendering/forms.js";
+import "./ui-rendering/boards.js";
+import "./ui-rendering/screen-swap.js";

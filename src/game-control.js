@@ -27,18 +27,15 @@ function toggleTurn() {
   pubSub.publish(events.TURN_SWITCH, turn);
 }
 
-export function createPlayers(p1Name="Unnamed Person", p2Name) {
+export function createPlayers(p1Name = "Unnamed Person", p2Name) {
   if (hasBegun()) throw new Error("A game is already in progress");
 
   p1 = humanPlayer(p1Name);
 
-  if (p2Name) {
+  if (p2Name) { // @todo refactor into ternary expression
     p2 = humanPlayer(p2Name);
   } else {
     p2 = computerPlayer();
-    pubSub.subscribe(events.TURN_SWITCH, (turn) => {
-      if (turn === 2) computerPlayTurn();
-    });
   }
 }
 
@@ -88,12 +85,12 @@ export function playTurn(col, row) {
   }
 }
 
-function computerPlayTurn() {
+export async function computerPlayTurn() {
   let foundValidAttack = false;
   while (!foundValidAttack) {
     const [col, row] = p2.calcRandomAttack();
     try {
-      playTurn(col, row);
+      await setTimeout(() => playTurn(col, row), 2000); // @todo randomize computer "thinking" time
     } catch (err) {
       continue;
     }

@@ -48,7 +48,11 @@ html {
   --palette-accent: darkslategray;
 }
 
-.invisible {
+.invisible-out-flow {
+  display: none;
+}
+
+.invisible-in-flow {
   visibility: hidden;
 }
 
@@ -158,8 +162,12 @@ nav ul {
   left: calc(var(--cell-size) / 2);
 }
 
-#status-display {
+#status-msg {
   min-height: 1.5rem;
+}
+
+#swap-screen-btn {
+  cursor: pointer;
 }
 
 table {
@@ -202,17 +210,17 @@ td {
   background-color: white;
 }
 
-.your-attacks .battlefield-btn {
+.your-attacks .battlefield-btn:not([disabled]).empty {
   cursor: pointer;
 }
 
-.your-attacks .battlefield-btn.empty:hover,
-.your-attacks .battlefield-btn.empty:focus-visible {
+.your-attacks .battlefield-btn:not([disabled]).empty:hover,
+.your-attacks .battlefield-btn:not([disabled]).empty:focus-visible {
   border: 2px solid black;
   filter: brightness(97%);
 }
 
-.your-attacks .battlefield-btn.empty:active {
+.your-attacks .battlefield-btn:not([disabled]).empty:active {
   filter: brightness(94%);
 }
 
