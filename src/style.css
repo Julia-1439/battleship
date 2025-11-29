@@ -150,13 +150,13 @@ nav ul {
   background-color: white;
 }
 
-#game-update-msg-container {
+#status-display-container {
   flex: none;
   width: 100%;
   text-align: center;
 }
 
-#game-update-msg {
+#status-display {
   min-height: 1.5rem;
 }
 
