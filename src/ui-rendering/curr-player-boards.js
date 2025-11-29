@@ -1,9 +1,12 @@
 import * as game from "../game-control.js";
 
+/* ========================================================================== */
+/* FUNCTIONS & VARIABLES */
+/* ========================================================================== */
+
 const currPlayerShips = document.querySelector(".battlefield.your-ships");
 const currPlayerAttacks = document.querySelector(".battlefield.your-attacks");
-
-game.pubSub.subscribe(game.events.BOARD_UPDATE, renderBoards);
+const gameUpdateMsg = document.querySelector("#game-update-msg");
 
 function renderBoards(data) {
   const p1Board = data.p1Board;
@@ -33,3 +36,21 @@ function renderBoards(data) {
 }
 
 // @todo render ship nodes
+
+/* ========================================================================== */
+/* LISTENERS */
+/* ========================================================================== */
+
+game.pubSub.subscribe(game.events.BOARD_UPDATE, renderBoards);
+
+currPlayerAttacks.querySelectorAll(".battlefield-btn").forEach((btn) => {
+  btn.addEventListener("click", (evt) => {
+    const col = +btn.dataset.col;
+    const row = +btn.dataset.row;
+    try {
+      game.playTurn(col, row);
+    } catch (err) {
+      // @todo render some message with a status update module
+    }
+  });
+});

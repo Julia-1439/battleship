@@ -141,7 +141,7 @@ nav ul {
   width: 1rem;
 }
 
-.player-battlefields {
+#player-battlefields {
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
@@ -150,10 +150,14 @@ nav ul {
   background-color: white;
 }
 
-.battlefields-title {
+#game-update-msg-container {
   flex: none;
   width: 100%;
   text-align: center;
+}
+
+#game-update-msg {
+  min-height: 1.5rem;
 }
 
 table {
