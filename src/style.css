@@ -154,6 +154,8 @@ nav ul {
   flex: none;
   width: 100%;
   text-align: center;
+  position: relative;
+  left: calc(var(--cell-size) / 2);
 }
 
 #status-display {
