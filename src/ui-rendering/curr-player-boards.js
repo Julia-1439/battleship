@@ -54,3 +54,5 @@ currPlayerAttacks.querySelectorAll(".battlefield-btn").forEach((btn) => {
     }
   });
 });
+
+// @todo add ids to each of the tables. can have ids and classes you know! would simplify the query selection process

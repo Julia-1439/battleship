@@ -6,7 +6,7 @@ let p2;
 let turn = null;
 export const pubSub = new PubSub(); // to be used by a UI controller to receive game events as they happen
 export const events = Object.freeze({
-  TURN_SWITCH: Symbol("TURN_SWITCH"),
+  TURN_SWITCH: Symbol("TURN_SWITCH"), // @todo rename to "TURN_CHANGE"
   BOARD_UPDATE: Symbol("BOARD_UPDATE"),
   WINNER_DECLARED: Symbol("WINNER_DECLARED"),
 });
