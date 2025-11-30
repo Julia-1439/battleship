@@ -83,12 +83,14 @@ export function playTurn(col, row) {
   }
 }
 
-export async function computerPlayTurn() {
+export function computerPlayTurn() {
+  if (!hasBegun()) throw new Error("A game has not started yet");
+    
   let foundValidAttack = false;
   while (!foundValidAttack) {
     const [col, row] = p2.calcRandomAttack();
     try {
-      await setTimeout(() => playTurn(col, row), 2000); // @todo randomize computer "thinking" time
+      playTurn(col, row);
     } catch (err) {
       continue;
     }

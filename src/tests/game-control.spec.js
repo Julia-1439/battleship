@@ -73,6 +73,7 @@ describe("playing a game to end", () => {
       for (let j = 0; j < BOARD_LEN; j++) {
         try {
           game.playTurn(i, j);
+          game.computerPlayTurn();
         } catch (err) { // stop playing turns once the game has ended
           break outer;
         }
