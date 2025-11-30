@@ -50,11 +50,9 @@ export function start() {
 
 // @todo left as public to enable randomized placements in the future
 export function placeShips() {
-  p1.gameBoard.placeShip(4, 0, 0, "h");
-  p1.gameBoard.placeShip(2, 5, 4, "v");
+  p1.gameBoard.placeShip(1, 0, 0, "h");
 
-  p2.gameBoard.placeShip(4, 6, 0, "h");
-  p2.gameBoard.placeShip(2, 1, 1, "v");
+  p2.gameBoard.placeShip(1, 1, 1, "v");
 
   pubSub.publish(events.BOARD_UPDATE, {
     p1Board: p1.gameBoard.state,

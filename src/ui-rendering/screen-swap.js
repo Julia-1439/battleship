@@ -38,7 +38,7 @@ swapScreenBtn.addEventListener("click", async () => {
   setStatusMsg("Swapping screens in a moment, look away!");
   await setTimeout(() => {
     showBoards(turn);
-    setStatusMsg(""); // @todo no clue why this does not work if I move it to after setTimeout
+    setStatusMsg(""); // @todo no clue why this does not work if I move it to after setTimeout. try isolating the problem
   }, 2000);
 });
 
