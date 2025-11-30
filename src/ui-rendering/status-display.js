@@ -1,3 +1,8 @@
+/**
+ * @module 
+ * Utility module used by UI-rendering modules to display messages to the players
+ */
+
 const statusMsg = document.querySelector("#status-msg");
 
 /**
