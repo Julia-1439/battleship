@@ -98,6 +98,7 @@ input[type="checkbox"] {
 
 body {
   margin: 0;
+  padding: 0 0 var(--big-padding) 0;
   background: #356063;
   background: linear-gradient(91deg, rgba(53, 96, 99, 1) 0%, rgba(51, 112, 145, 1) 58%, rgba(47, 117, 196, 1) 100%);
 }

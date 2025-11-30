@@ -80,6 +80,16 @@ export function show(turn) {
   currPlayer.attacks.classList.remove("invisible-out-flow");
 }
 
+function showEndResults(winner) {
+  [p1, p2].forEach((player) => {
+    player.ships.classList.remove("invisible-out-flow");
+    player.attacks.classList.remove("invisible-out-flow");
+    disableAttacks(player);
+  });
+  const message = `${winner.name ? `Player "${winner.name}"` : "The computer"} has won!`;
+  setStatusMsg(message);
+}
+
 function enableAttacks(player) {
   player.attackBtns.forEach((btn) => btn.removeAttribute("disabled"));
 }
@@ -99,9 +109,10 @@ game.pubSub.subscribe(game.events.TURN_CHANGE, (turn) => {
   if (!game.hasBegun()) return;
   const currPlayer = turn === 1 ? p1 : p2;
   const prevPlayer = turn === 1 ? p2 : p1;
-  enableAttacksFor(currPlayer);
-  disableAttacksFor(prevPlayer);
+  enableAttacks(currPlayer);
+  disableAttacks(prevPlayer);
 });
+game.pubSub.subscribe(game.events.WINNER_DECLARED, showEndResults);
 
 [p1.attackBtns, p2.attackBtns].forEach((btnGroup) => {
   btnGroup.forEach((btn) => {
@@ -116,7 +127,7 @@ game.pubSub.subscribe(game.events.TURN_CHANGE, (turn) => {
       }
 
       // valid attack was done
-      setStatusMsg(""); // @todo write something
+      // setStatusMsg(""); // @todo write something // NOTE: overrides the winner message
     });
   });
 });

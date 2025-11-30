@@ -10,6 +10,7 @@ const statusMsg = document.querySelector("#status-msg");
  * @param {String} msg
  */
 export function setStatusMsg(msg) {
+  console.log(msg);
   statusMsg.textContent = msg;
 }
 
