@@ -80,13 +80,13 @@ export function show(turn) {
   currPlayer.attacks.classList.remove("invisible-out-flow");
 }
 
-function enableAttacks(turn) {
-  if (turn === null) return;
-  const currPlayer = turn === 1 ? p1 : p2;
-  currPlayer.attackBtns.forEach((btn) => btn.removeAttribute("disabled"));
+function enableAttacks(player) {
+  player.attackBtns.forEach((btn) => btn.removeAttribute("disabled"));
 }
 
-// @todo disable attacks func?
+function disableAttacks(player) {
+  player.attackBtns.forEach((btn) => btn.setAttribute("disabled", ""));
+}
 
 // @todo render ship nodes
 
@@ -95,7 +95,13 @@ function enableAttacks(turn) {
 /* ========================================================================== */
 
 game.pubSub.subscribe(game.events.BOARD_UPDATE, update);
-game.pubSub.subscribe(game.events.TURN_CHANGE, enableAttacks);
+game.pubSub.subscribe(game.events.TURN_CHANGE, (turn) => {
+  if (!game.hasBegun()) return;
+  const currPlayer = turn === 1 ? p1 : p2;
+  const prevPlayer = turn === 1 ? p2 : p1;
+  enableAttacksFor(currPlayer);
+  disableAttacksFor(prevPlayer);
+});
 
 [p1.attackBtns, p2.attackBtns].forEach((btnGroup) => {
   btnGroup.forEach((btn) => {
@@ -111,7 +117,6 @@ game.pubSub.subscribe(game.events.TURN_CHANGE, enableAttacks);
 
       // valid attack was done
       setStatusMsg(""); // @todo write something
-      btnGroup.forEach((btn) => btn.setAttribute("disabled", ""));
     });
   });
 });

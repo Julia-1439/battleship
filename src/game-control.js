@@ -11,7 +11,7 @@ export const events = Object.freeze({
   WINNER_DECLARED: Symbol("WINNER_DECLARED"),
 });
 
-function hasBegun() {
+export function hasBegun() {
   return turn !== null;
 }
 
