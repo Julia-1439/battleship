@@ -95,7 +95,7 @@ function enableAttacks(turn) {
 /* ========================================================================== */
 
 game.pubSub.subscribe(game.events.BOARD_UPDATE, update);
-game.pubSub.subscribe(game.events.TURN_SWITCH, enableAttacks);
+game.pubSub.subscribe(game.events.TURN_CHANGE, enableAttacks);
 
 [p1.attackBtns, p2.attackBtns].forEach((btnGroup) => {
   btnGroup.forEach((btn) => {

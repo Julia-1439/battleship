@@ -16,7 +16,7 @@ afterEach(() => {
 describe("setting up a game", () => {
   test("successful start", () => {
     const subId1 = game.pubSub.subscribe(game.events.BOARD_UPDATE, mockProcessor); 
-    const subId2 = game.pubSub.subscribe(game.events.TURN_SWITCH, mockProcessor); 
+    const subId2 = game.pubSub.subscribe(game.events.TURN_CHANGE, mockProcessor); 
     game.createPlayers("Alice", "Bob");
     game.start();
 

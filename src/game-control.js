@@ -6,7 +6,7 @@ let p2;
 let turn = null;
 export const pubSub = new PubSub(); // to be used by a UI controller to receive game events as they happen
 export const events = Object.freeze({
-  TURN_SWITCH: Symbol("TURN_SWITCH"), // @todo rename to "TURN_CHANGE"
+  TURN_CHANGE: Symbol("TURN_CHANGE"),
   BOARD_UPDATE: Symbol("BOARD_UPDATE"),
   WINNER_DECLARED: Symbol("WINNER_DECLARED"),
 });
@@ -18,25 +18,20 @@ function hasBegun() {
 function setTurn(val) {
   if (![1, 2, null].includes(val)) throw new Error("Invalid turn value");
   turn = val;
-  pubSub.publish(events.TURN_SWITCH, turn);
+  pubSub.publish(events.TURN_CHANGE, turn);
 }
 
 function toggleTurn() {
   if (!hasBegun()) throw new Error("A game has not started yet");
   turn = turn === 1 ? 2 : 1;
-  pubSub.publish(events.TURN_SWITCH, turn);
+  pubSub.publish(events.TURN_CHANGE, turn);
 }
 
 export function createPlayers(p1Name = "Unnamed Person", p2Name) {
   if (hasBegun()) throw new Error("A game is already in progress");
 
   p1 = humanPlayer(p1Name);
-
-  if (p2Name) { // @todo refactor into ternary expression
-    p2 = humanPlayer(p2Name);
-  } else {
-    p2 = computerPlayer();
-  }
+  p2 = p2Name ? humanPlayer(p2Name) : computerPlayer();
 }
 
 export function start() {

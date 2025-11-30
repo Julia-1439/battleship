@@ -26,7 +26,7 @@ function hideSwapBtn() {
 /* LISTENERS */
 /* ========================================================================== */
 
-game.pubSub.subscribe(game.events.TURN_SWITCH, (val) => {
+game.pubSub.subscribe(game.events.TURN_CHANGE, (val) => {
   setTurn(val);
   if (turn === null) return;
   if (turn === 2) atGameStart = false; 
