@@ -24,49 +24,30 @@ p2.attackBtns = p2.attacks.querySelectorAll(".battlefield-btn");
  * @param {*} data 
  */
 function update(data) {
-  // @todo eliminate the redundancy here
-  p1.shipCells.forEach((btn) => {
-    const col = +btn.dataset.col;
-    const row = +btn.dataset.row;
-    const cell = data.p1Board[col][row];
-    if (cell.isAttacked || cell.ship) {
-      btn.classList.remove("empty");
-      if (cell.isAttacked) btn.classList.add("is-attacked");
-      if (cell.ship) btn.classList.add("your-ship");
-    }
-  });
+  [p1, p2].forEach((player) => {
+    player.shipCells.forEach((btn) => {
+      const playerBoard = player === p1 ? data.p1Board : data.p2Board;
+      const col = +btn.dataset.col;
+      const row = +btn.dataset.row;
+      const cell = playerBoard[col][row];
+      if (cell.isAttacked || cell.ship) {
+        btn.classList.remove("empty");
+        if (cell.isAttacked) btn.classList.add("is-attacked");
+        if (cell.ship) btn.classList.add("your-ship");
+      }
+    });
 
-  p2.shipCells.forEach((btn) => {
-    const col = +btn.dataset.col;
-    const row = +btn.dataset.row;
-    const cell = data.p2Board[col][row];
-    if (cell.isAttacked || cell.ship) {
-      btn.classList.remove("empty");
-      if (cell.isAttacked) btn.classList.add("is-attacked");
-      if (cell.ship) btn.classList.add("your-ship");
-    }
-  });
-
-  p1.attackBtns.forEach((btn) => {
-    const col = +btn.dataset.col;
-    const row = +btn.dataset.row;
-    const cell = data.p2Board[col][row];
-    if (cell.isAttacked) {
-      btn.classList.remove("empty");
-      btn.classList.add("is-attacked");
-      if (cell.isAttacked && cell.ship) btn.classList.add("landed-hit");
-    }
-  });
-
-  p2.attackBtns.forEach((btn) => {
-    const col = +btn.dataset.col;
-    const row = +btn.dataset.row;
-    const cell = data.p1Board[col][row];
-    if (cell.isAttacked) {
-      btn.classList.remove("empty");
-      btn.classList.add("is-attacked");
-      if (cell.isAttacked && cell.ship) btn.classList.add("landed-hit");
-    }
+    player.attackBtns.forEach((btn) => {
+      const opponentBoard = player === p1 ? data.p2Board : data.p1Board;
+      const col = +btn.dataset.col;
+      const row = +btn.dataset.row;
+      const cell = opponentBoard[col][row];
+      if (cell.isAttacked) {
+        btn.classList.remove("empty");
+        btn.classList.add("is-attacked");
+        if (cell.isAttacked && cell.ship) btn.classList.add("landed-hit");
+      }
+    });
   });
 }
 
