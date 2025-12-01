@@ -1,6 +1,7 @@
 import * as game from "../game-control.js";
 import { show as showBoards } from "./boards.js";
 import { setStatusMsg } from "./status-display.js";
+import { delay } from "../delayer.js";
 
 /* ========================================================================== */
 /* FUNCTIONS & VARIABLES */
@@ -8,6 +9,7 @@ import { setStatusMsg } from "./status-display.js";
 
 let turn;
 let atGameStart = true;
+const SWAPPING_TIME = 1500;
 const swapScreenBtn = document.querySelector("#swap-screen-btn");
 
 function setTurn(val) {
@@ -36,11 +38,10 @@ game.pubSub.subscribe(game.events.TURN_CHANGE, (val) => {
 swapScreenBtn.addEventListener("click", async () => {
   hideSwapBtn();
   setStatusMsg("Swapping screens in a moment, look away!");
-  await setTimeout(() => {
-    showBoards(turn);
-    if (turn === 2)
-      document.dispatchEvent(new CustomEvent("custom:p2ScreenVisible"));
-    setStatusMsg(""); // @todo no clue why this does not work if I move it to after setTimeout. try isolating the problem
-  }, 1500);
+  await delay(SWAPPING_TIME);
+  showBoards(turn);
+  if (turn === 2)
+    document.dispatchEvent(new CustomEvent("custom:p2ScreenVisible"));
+  setStatusMsg("");
 });
 
