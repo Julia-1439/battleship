@@ -98,7 +98,6 @@ export function clear() {
   p2 = undefined;
 
   setTurn(null);
-  pubSub.clear();
 }
 
 function handleWin() {
@@ -106,5 +105,4 @@ function handleWin() {
   pubSub.publish(events.WINNER_DECLARED, winner);
 
   setTurn(null);
-  pubSub.clear();
 }

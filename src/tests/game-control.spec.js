@@ -10,6 +10,7 @@ const BOARD_LEN = GameBoard.BOARD_LEN;
 
 afterEach(() => {
   game.clear();
+  game.pubSub.clear();
   jest.clearAllMocks();
 });
 
