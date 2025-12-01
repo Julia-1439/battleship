@@ -93,6 +93,10 @@ dialog::backdrop {
   text-align: center;
 }
 
+input[disabled] {
+  color: gray;
+}
+
 input[type="checkbox"] {
   vertical-align: -1px; /* adjusts the position of the checkboxes on the text baseline */
   accent-color: var(--palette-accent);

@@ -27,11 +27,11 @@ function toggleTurn() {
   pubSub.publish(events.TURN_CHANGE, turn);
 }
 
-export function createPlayers(p1Name = "Unnamed Person", p2Name) {
+export function createPlayers(p1Name = "Unnamed Person", p2Name, isP2Computer) {
   if (hasBegun()) throw new Error("A game is already in progress");
 
   p1 = humanPlayer(p1Name);
-  p2 = p2Name ? humanPlayer(p2Name) : computerPlayer();
+  p2 = isP2Computer ? computerPlayer() : humanPlayer(p2Name);
 }
 
 export function start() {

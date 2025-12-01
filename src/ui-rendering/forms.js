@@ -3,11 +3,58 @@ import * as game from "../game-control.js";
 (function initSetupForm(doc, window) {
   const openDialogBtn = doc.querySelector("#setup-game-btn");
   const dialog = doc.querySelector("#setup-game-dialog");
-  const form = doc.querySelector("#setup-game-form");
-  const cancelBtn = doc.querySelector("#setup-game-form .cancel-btn");
+  const form = dialog.querySelector("#setup-game-form");
+  const p1NameInput = form.querySelector("#p1-name");
+  const p2NameInput = form.querySelector("#p2-name");
+  const isComputerChkbox = form.querySelector("#is-p2-computer");
+  const cancelBtn = form.querySelector(".cancel-btn");
+
+  const customValidator = ((p1Name, p2Name, isComputer) => {
+    function setErrorMsgP1Name() {
+      p1Name.setCustomValidity("Please fill out the player name");
+    }
+    function setErrorMsgP2Name() {
+      p2Name.setCustomValidity("Please fill out the player name");
+    }
+    function handleP2NameInput() {
+      if (!p2Name.validity.valueMissing) {
+        p2Name.setCustomValidity("");
+      } else {
+        setErrorMsgP2Name();
+        p2Name.reportValidity();
+      }
+    }
+
+    p1Name.addEventListener("input", () => {
+      if(!p1Name.validity.valueMissing) {
+        p1Name.setCustomValidity("");
+      } else {
+        setErrorMsgP1Name();
+        p1Name.reportValidity();
+      }
+    });
+    isComputer.addEventListener("change", () => {
+      if (isComputer.checked) {
+        p2Name.disabled = true;
+        p2Name.placeholder = "N/A";
+        p2Name.required = false;
+        p2Name.removeEventListener("input", handleP2NameInput);
+      } else {
+        p2Name.disabled = false;
+        p2Name.placeholder = "";
+        p2Name.required = true;
+        p2Name.addEventListener("input", handleP2NameInput);
+        if (p2Name.validity.valueMissing) setErrorMsgP2Name();
+      }
+    });
+    return {
+      setErrorMsgP1Name,
+    };
+  })(p1NameInput, p2NameInput, isComputerChkbox);
 
   window.addEventListener("load", () => {
     dialog.showModal();
+    customValidator.setErrorMsgP1Name();
   });
   openDialogBtn.addEventListener("click", () => {
     dialog.showModal();
@@ -16,8 +63,9 @@ import * as game from "../game-control.js";
     const formData = new FormData(form);
     const p1Name = formData.get("p1Name");
     const p2Name = formData.get("p2Name");
-    game.createPlayers(p1Name, p2Name);
-    game.start(p1Name, p2Name);
+    const isP2Computer = formData.get("isP2Computer") !== null || false;
+    game.createPlayers(p1Name, p2Name, isP2Computer);
+    game.start();
     // choose not to reset the form so the entered info persists if additional games wish to be played
   });
   cancelBtn.addEventListener("click", () => {
@@ -28,9 +76,9 @@ import * as game from "../game-control.js";
 
 (function initEndForm(doc) {
   const dialog = doc.querySelector("#end-game-dialog");
-  const form = doc.querySelector("#end-game-form");
-  const message = doc.querySelector("#end-game-form p");
-  const cancelBtn = doc.querySelector("#end-game-form .cancel-btn");
+  const form = dialog.querySelector("#end-game-form");
+  const message = form.querySelector("p");
+  const cancelBtn = form.querySelector(".cancel-btn");
 
   game.pubSub.subscribe(game.events.WINNER_DECLARED, async () => {
     await setTimeout(() => {
