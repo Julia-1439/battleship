@@ -38,7 +38,9 @@ swapScreenBtn.addEventListener("click", async () => {
   setStatusMsg("Swapping screens in a moment, look away!");
   await setTimeout(() => {
     showBoards(turn);
+    if (turn === 2)
+      document.dispatchEvent(new CustomEvent("custom:p2ScreenVisible"));
     setStatusMsg(""); // @todo no clue why this does not work if I move it to after setTimeout. try isolating the problem
-  }, 2000);
+  }, 1500);
 });
 
