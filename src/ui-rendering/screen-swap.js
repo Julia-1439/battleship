@@ -41,7 +41,7 @@ swapScreenBtn.addEventListener("click", async () => {
   await delay(SWAPPING_TIME);
   showBoards(turn);
   if (turn === 2)
-    document.dispatchEvent(new CustomEvent("custom:p2ScreenVisible"));
+    document.dispatchEvent(new CustomEvent("custom:computerTurn"));
   setStatusMsg("");
 });
 

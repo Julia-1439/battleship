@@ -5,7 +5,7 @@ import { delay } from "../delayer.js";
 const THINKING_TIME = 1000;
 const swapScreenBtn = document.querySelector("#swap-screen-btn");
 
-document.addEventListener("custom:p2ScreenVisible", async () => {
+document.addEventListener("custom:computerTurn", async () => {
   setStatusMsg("The computer is thinking...");
   await delay(THINKING_TIME);
   game.computerPlayTurn();

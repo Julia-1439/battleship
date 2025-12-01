@@ -94,7 +94,6 @@ game.pubSub.subscribe(game.events.TURN_CHANGE, (turn) => {
   disableAttacks(prevPlayer);
 });
 game.pubSub.subscribe(game.events.WINNER_DECLARED, showEndResults);
-
 [p1.attackBtns, p2.attackBtns].forEach((btnGroup) => {
   btnGroup.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -111,4 +110,7 @@ game.pubSub.subscribe(game.events.WINNER_DECLARED, showEndResults);
       // setStatusMsg(""); // @todo write something // NOTE: overrides the winner message
     });
   });
+});
+document.addEventListener("custom:computerTurn", () => {
+  disableAttacks(p2);
 });
