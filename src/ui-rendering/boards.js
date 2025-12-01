@@ -7,17 +7,17 @@ import { setStatusMsg } from "./status-display.js";
 
 const p1 = {
   ships: document.querySelector("#p1-ships"),
+  shipCells: document.querySelectorAll("#p1-ships .battlefield-btn"),
   attacks: document.querySelector("#p1-attacks"),
+  attackBtns: document.querySelectorAll("#p1-attacks .battlefield-btn"),
 };
-p1.shipCells = p1.ships.querySelectorAll(".battlefield-btn");
-p1.attackBtns = p1.attacks.querySelectorAll(".battlefield-btn");
 
 const p2 = {
   ships: document.querySelector("#p2-ships"),
+  shipCells: document.querySelectorAll("#p2-ships .battlefield-btn"),
   attacks: document.querySelector("#p2-attacks"),
+  attackBtns: document.querySelectorAll("#p2-attacks .battlefield-btn"),
 };
-p2.shipCells = p2.ships.querySelectorAll(".battlefield-btn");
-p2.attackBtns = p2.attacks.querySelectorAll(".battlefield-btn");
 
 /**
  * Updates the current player's and opponent's ship board and attack board 
