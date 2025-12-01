@@ -56,7 +56,8 @@ html {
   visibility: hidden;
 }
 
-#setup-game-dialog {
+#setup-game-dialog,
+#end-game-dialog {
   margin: 20vh auto auto auto;
   width: max(40%, 275px);
   padding: var(--big-padding);
@@ -70,7 +71,8 @@ dialog::backdrop {
   opacity: 0.3;
 }
 
-#setup-game-form {
+#setup-game-form,
+#end-game-form {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

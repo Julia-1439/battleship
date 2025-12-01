@@ -687,24 +687,24 @@
   </body>
   <dialog id="setup-game-dialog">
     <form method="dialog" id="setup-game-form">
-      <label for="player-1-name" class="half-cell text-center-align"
+      <label for="p1-name" class="half-cell text-center-align"
         >Player 1 Name</label
       >
       <input
         type="text"
-        name="player1Name"
-        id="player-1-name"
+        name="p1Name"
+        id="p1-name"
         class="half-cell"
         required
         autofocus
       />
-      <label for="player-2-name" class="half-cell text-center-align"
+      <label for="p2-name" class="half-cell text-center-align"
         >Player 2 Name</label
       >
       <input
         type="text"
-        name="player2Name"
-        id="player-2-name"
+        name="p2Name"
+        id="p2-name"
         class="half-cell"
         placeholder="current unavailable"
         disabled
@@ -720,6 +720,15 @@
       <div class="full-cell">
         <button type="submit">Begin Game!</button>
         <button type="button" class="cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="end-game-dialog">
+    <form method="dialog" id="end-game-form">
+      <p></p>
+      <div class="full-cell">
+        <button type="submit">Play Again</button>
+        <button type="button" class="cancel-btn">Not Yet</button>
       </div>
     </form>
   </dialog>
