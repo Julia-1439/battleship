@@ -6,15 +6,15 @@ import { setStatusMsg } from "./status-display.js";
 /* ========================================================================== */
 
 const p1 = {
-  ships: document.querySelector(`.battlefield.your-ships[data-player="1"]`),
-  attacks: document.querySelector(`.battlefield.your-attacks[data-player="1"]`),
+  ships: document.querySelector("#p1-ships"),
+  attacks: document.querySelector("#p1-attacks"),
 };
 p1.shipCells = p1.ships.querySelectorAll(".battlefield-btn");
 p1.attackBtns = p1.attacks.querySelectorAll(".battlefield-btn");
 
 const p2 = {
-  ships: document.querySelector(`.battlefield.your-ships[data-player="2"]`),
-  attacks: document.querySelector(`.battlefield.your-attacks[data-player="2"]`),
+  ships: document.querySelector("#p2-ships"),
+  attacks: document.querySelector("#p2-attacks"),
 };
 p2.shipCells = p2.ships.querySelectorAll(".battlefield-btn");
 p2.attackBtns = p2.attacks.querySelectorAll(".battlefield-btn");
@@ -131,5 +131,3 @@ game.pubSub.subscribe(game.events.WINNER_DECLARED, showEndResults);
     });
   });
 });
-
-// @todo add ids to each of the tables. can have ids and classes you know! would simplify the query selection process
