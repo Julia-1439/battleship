@@ -1,25 +1,39 @@
 import * as game from "../game-control.js";
 
-const setupBtn = document.querySelector("#setup-game-btn");
-const dialog = document.querySelector("#setup-game-dialog");
-const form = dialog.querySelector("form");
-const startBtn = form.querySelector("[type=submit]");
-const cancelBtn = form.querySelector(".cancel-btn");
+/* ========================================================================== */
+/* FUNCTIONS & VARIABLES */
+/* ========================================================================== */
+
+const setup = {
+  openDialogBtn: document.querySelector("#setup-game-btn"),
+  dialog: document.querySelector("#setup-game-dialog"),
+  form: document.querySelector("#setup-game-dialog form"),
+  cancelBtn: document.querySelector("#setup-game-dialog .cancel-btn"),
+};
+
+/* ========================================================================== */
+/* LISTENERS */
+/* ========================================================================== */
+
 window.addEventListener("load", () => {
-  dialog.showModal();
+  setup.dialog.showModal();
 });
-setupBtn.addEventListener("click", () => {
-  dialog.showModal();
+setup.openDialogBtn.addEventListener("click", () => {
+  setup.dialog.showModal();
 });
-form.addEventListener("submit", () => {
-  const formData = new FormData(form);
+setup.form.addEventListener("submit", () => {
+  const formData = new FormData(setup.form);
   const player1Name = formData.get("player1Name");
   const player2Name = formData.get("player2Name");
   game.createPlayers(player1Name, player2Name);
   game.start(player1Name, player2Name);
-  form.reset();
+  setup.form.reset();
 });
-cancelBtn.addEventListener("click", () => {
-  form.reset();
-  dialog.close();
+setup.cancelBtn.addEventListener("click", () => {
+  setup.form.reset();
+  setup.dialog.close();
+});
+
+game.pubSub.subscribe(game.events.WINNER_DECLARED, (winner) => {
+  
 });
