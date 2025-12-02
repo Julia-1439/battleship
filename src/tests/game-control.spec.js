@@ -67,7 +67,7 @@ describe("playing a game to end", () => {
   test("one human, one computer", () => {
     const subId = game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor);
 
-    game.createPlayers("Alice",);
+    game.createPlayers("Alice", null, true);
     game.start();
 
     outer: for (let i = 0; i < BOARD_LEN; i++) {
