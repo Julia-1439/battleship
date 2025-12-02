@@ -77,7 +77,6 @@ import { initComputerListener as initComputerBoardDisabler } from "./boards.js";
     // choose not to reset the form so the entered info persists if additional games wish to be played
   });
   cancelBtn.addEventListener("click", () => {
-    form.reset();
     dialog.close();
   });
 })(document, window);
