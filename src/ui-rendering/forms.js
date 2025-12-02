@@ -1,4 +1,6 @@
 import * as game from "../game-control.js";
+import { initComputerListener as initComputerAttacker } from "./computer-attacker.js";
+import { initComputerListener as initComputerBoardDisabler } from "./boards.js";
 
 (function initSetupForm(doc, window) {
   const openDialogBtn = doc.querySelector("#setup-game-btn");
@@ -16,6 +18,14 @@ import * as game from "../game-control.js";
     function setErrorMsgP2Name() {
       p2Name.setCustomValidity("Please fill out the player name");
     }
+    function handleP1NameInput() {
+      if (!p1Name.validity.valueMissing) {
+        p1Name.setCustomValidity("");
+      } else {
+        setErrorMsgP1Name();
+        p1Name.reportValidity();
+      }
+    }
     function handleP2NameInput() {
       if (!p2Name.validity.valueMissing) {
         p2Name.setCustomValidity("");
@@ -25,14 +35,7 @@ import * as game from "../game-control.js";
       }
     }
 
-    p1Name.addEventListener("input", () => {
-      if(!p1Name.validity.valueMissing) {
-        p1Name.setCustomValidity("");
-      } else {
-        setErrorMsgP1Name();
-        p1Name.reportValidity();
-      }
-    });
+    p1Name.addEventListener("input", handleP1NameInput);
     isComputer.addEventListener("change", () => {
       if (isComputer.checked) {
         p2Name.disabled = true;
@@ -47,6 +50,7 @@ import * as game from "../game-control.js";
         if (p2Name.validity.valueMissing) setErrorMsgP2Name();
       }
     });
+    
     return {
       setErrorMsgP1Name,
     };
@@ -64,6 +68,10 @@ import * as game from "../game-control.js";
     const p1Name = formData.get("p1Name");
     const p2Name = formData.get("p2Name");
     const isP2Computer = formData.get("isP2Computer") !== null || false;
+    if (isP2Computer) {
+      initComputerAttacker();
+      initComputerBoardDisabler();
+    } 
     game.createPlayers(p1Name, p2Name, isP2Computer);
     game.start();
     // choose not to reset the form so the entered info persists if additional games wish to be played

@@ -79,6 +79,12 @@ function disableAttacks(player) {
   player.attackBtns.forEach((btn) => btn.setAttribute("disabled", ""));
 }
 
+export function initComputerListener() {
+  document.addEventListener("custom:p2ScreenVisible", () => {
+    disableAttacks(p2);
+  });
+}
+
 // @todo render ship nodes
 
 /* ========================================================================== */
@@ -110,7 +116,4 @@ game.pubSub.subscribe(game.events.WINNER_DECLARED, showEndResults);
       // setStatusMsg(""); // @todo write something // NOTE: overrides the winner message
     });
   });
-});
-document.addEventListener("custom:computerTurn", () => {
-  disableAttacks(p2);
 });
