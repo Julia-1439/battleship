@@ -67,7 +67,7 @@ import { initComputerListener as initComputerBoardDisabler } from "./boards.js";
     const formData = new FormData(form);
     const p1Name = formData.get("p1Name");
     const p2Name = formData.get("p2Name");
-    const isP2Computer = formData.get("isP2Computer") !== null || false;
+    const isP2Computer = formData.get("isP2Computer") !== null;
     if (isP2Computer) {
       initComputerAttacker();
       initComputerBoardDisabler();
