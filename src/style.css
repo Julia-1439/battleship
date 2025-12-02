@@ -169,11 +169,12 @@ nav ul {
   left: calc(var(--cell-size) / 2);
 }
 
-#status-msg {
+#status-msg,
+#game-action-btns-row {
   min-height: 1.5rem;
 }
 
-#swap-screen-btn {
+#game-action-btns-row button {
   cursor: pointer;
 }
 

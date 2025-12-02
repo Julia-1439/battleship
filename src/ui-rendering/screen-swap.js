@@ -17,11 +17,11 @@ function setTurn(val) {
 }
 
 function displaySwapBtn() {
-  swapScreenBtn.classList.remove("invisible-in-flow");
+  swapScreenBtn.classList.remove("invisible-out-flow");
 }
 
 function hideSwapBtn() {
-  swapScreenBtn.classList.add("invisible-in-flow");
+  swapScreenBtn.classList.add("invisible-out-flow");
 }
 
 /* ========================================================================== */
