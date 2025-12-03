@@ -43,27 +43,6 @@ describe("setting up a game", () => {
 });
 
 describe("playing a game to end", () => {
-  test("two humans", () => {
-    const subId = game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor); 
-
-    game.createPlayers("Alice", "Bob");
-    game.start();
-
-    outer: for (let i = 0; i < BOARD_LEN; i++) {
-      for (let j = 0; j < BOARD_LEN; j++) {
-        try {
-          game.playTurn(i, j); // player 1's turn
-          game.playTurn(i, j); // player 2's turn
-        } catch (err) { // stop playing turns once the game has ended
-          break outer;
-        }
-      }
-    }
-
-    expect(mockProcessor).toHaveBeenCalledTimes(1); 
-    expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); // outgoing command messages: test only if they were sent, rather than their effects
-  });
-
   test("one human, one computer", () => {
     const subId = game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor);
 
@@ -82,6 +61,27 @@ describe("playing a game to end", () => {
     }
 
     expect(mockProcessor).toHaveBeenCalledTimes(1);
+    expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); // outgoing command messages: test only if they were sent, rather than their effects
+  });
+  
+  test("two humans", () => {
+    const subId = game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor); 
+
+    game.createPlayers("Alice", "Bob");
+    game.start();
+
+    outer: for (let i = 0; i < BOARD_LEN; i++) {
+      for (let j = 0; j < BOARD_LEN; j++) {
+        try {
+          game.playTurn(i, j); // player 1's turn
+          game.playTurn(i, j); // player 2's turn
+        } catch (err) { // stop playing turns once the game has ended
+          break outer;
+        }
+      }
+    }
+
+    expect(mockProcessor).toHaveBeenCalledTimes(1); 
     expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); // outgoing command messages: test only if they were sent, rather than their effects
   });
 });
