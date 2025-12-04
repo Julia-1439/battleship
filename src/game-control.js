@@ -4,6 +4,14 @@ import PubSub from "./pub-sub.js";
 let p1;
 let p2;
 let turn = null;
+const defaultShipsConfig = new Set([
+  [2, 1, 1, "v"],
+  [4, 6, 2, "h"],
+  [2, 3, 6, "h"],
+  [3, 7, 5, "h"],
+  [2, 0, 7, "v"],
+  [3, 2, 6, "v"],
+]);
 export const pubSub = new PubSub(); // to be used by a UI controller to receive game events as they happen
 export const events = Object.freeze({
   TURN_CHANGE: Symbol("TURN_CHANGE"),
@@ -80,6 +88,7 @@ export function playTurn(col, row) {
 
 export function computerPlayTurn() {
   if (!hasBegun()) throw new Error("A game has not started yet");
+  if (turn !== 2) throw new Error("It is not the computer's turn yet");
     
   let foundValidAttack = false;
   while (!foundValidAttack) {
