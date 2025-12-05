@@ -2,13 +2,12 @@ import Ship from "./ship";
 
 class GameBoard {
   static BOARD_LEN = 10;
-  #board = Array.from({ length: GameBoard.BOARD_LEN }, () =>
-    Array.from({ length: GameBoard.BOARD_LEN }, () => createCell()),
-  );
-  #numShips = 0;
-
-  get state() {
-    return [...this.#board];
+  #numAliveShips = 0;
+  constructor() {
+    this.board = Array.from({ length: GameBoard.BOARD_LEN }, () =>
+      Array.from({ length: GameBoard.BOARD_LEN }, () => createCell()),
+    );
+    this.placedShips = new Set();
   }
 
   /**
@@ -32,7 +31,7 @@ class GameBoard {
       if (col + (shipLen - 1) >= GameBoard.BOARD_LEN)
         throw new RangeError("Ship extends off the board");
       for (let i = 0; i < shipLen; i++) {
-        const cell = this.#board[col + i][row];
+        const cell = this.board[col + i][row];
         if (cell.ship !== null)
           throw new Error("Ship collides with another ship");
         cell.ship = newShip;
@@ -41,13 +40,26 @@ class GameBoard {
       if (row + (shipLen - 1) >= GameBoard.BOARD_LEN)
         throw new RangeError("Ship extends off the board");
       for (let i = 0; i < shipLen; i++) {
-        const cell = this.#board[col][row + i];
+        const cell = this.board[col][row + i];
         if (cell.ship !== null)
           throw new Error("Ship collides with another ship");
         cell.ship = newShip;
       }
     }
-    this.#numShips++;
+    this.placedShips.add(newShip);
+    this.#numAliveShips++;
+  }
+
+
+
+  async randomizeShips() {
+    this.placedShips.forEach((ship) => {
+      
+    });
+    // for each ship, 
+    //   remove it. (new method)
+    //   place it with random coordinates and orientation. 
+    //   IF conflicts, try again. (this makes it async)
   }
 
   receiveAttack(col, row) {
@@ -59,17 +71,17 @@ class GameBoard {
     )
       throw new RangeError("Index is out of bounds");
 
-    const cell = this.#board[col][row];
+    const cell = this.board[col][row];
     if (cell.isAttacked) throw new Error("This cell was already attacked");
     cell.isAttacked = true;
     if (cell.ship) {
       cell.ship.hit();
-      if (cell.ship.isSunk()) this.#numShips--;
+      if (cell.ship.isSunk()) this.#numAliveShips--;
     } 
   }
 
   allShipsSunken() {
-    return this.#numShips === 0;
+    return this.#numAliveShips === 0;
   }
 }
 
