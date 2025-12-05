@@ -48,15 +48,24 @@ export function start() {
   if (hasBegun()) throw new Error("A game is already in progress");
 
   placeShips();
+  randomizeShips();
   setTurn(1);
 }
 
-// @todo left as public to enable randomized placements in the future
-export function placeShips() {
-  p1.gameBoard.placeShip(1, 0, 0, "h");
+function placeShips() {
+  [p1, p2].forEach((player) => {
+    defaultShipsConfig.forEach((config) =>
+      player.gameBoard.placeShip(...config),
+    );
+  });
+  pubSub.publish(events.BOARD_UPDATE, {
+    p1Board: p1.gameBoard.state,
+    p2Board: p2.gameBoard.state,
+  });
+}
 
-  p2.gameBoard.placeShip(1, 1, 1, "v");
-
+export function randomizeShips() {
+  [p1, p2].forEach((player) => player.gameBoard.randomizeShips());
   pubSub.publish(events.BOARD_UPDATE, {
     p1Board: p1.gameBoard.state,
     p2Board: p2.gameBoard.state,
@@ -68,11 +77,7 @@ export function playTurn(col, row) {
 
   // Attempt attack
   const opponent = turn === 1 ? p2 : p1;
-  try {
-    opponent.gameBoard.receiveAttack(col, row);
-  } catch (err) {
-    throw err;
-  }
+  opponent.gameBoard.receiveAttack(col, row);
   pubSub.publish(events.BOARD_UPDATE, {
     p1Board: p1.gameBoard.state,
     p2Board: p2.gameBoard.state,

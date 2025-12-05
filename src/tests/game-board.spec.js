@@ -10,17 +10,17 @@ describe("placing ships", () => {
   describe("no out-of-bounds, no collisions", () => {
     test("length 2, horizontal", () => {
       gb.placeShip(2, 0, 0, "h");
-      expect(gb.board[0][0].ship).toBeInstanceOf(Ship);
-      expect(gb.board[1][0].ship).toBeInstanceOf(Ship);
-      expect(gb.board[2][0].ship).not.toBeInstanceOf(Ship);
+      expect(gb.state[0][0].ship).toBeInstanceOf(Ship);
+      expect(gb.state[1][0].ship).toBeInstanceOf(Ship);
+      expect(gb.state[2][0].ship).not.toBeInstanceOf(Ship);
     });
 
     test("length 3, vertical", () => {
       gb.placeShip(3, 6, 3, "v");
-      expect(gb.board[6][3].ship).toBeInstanceOf(Ship);
-      expect(gb.board[6][4].ship).toBeInstanceOf(Ship);
-      expect(gb.board[6][5].ship).toBeInstanceOf(Ship);
-      expect(gb.board[6][6].ship).not.toBeInstanceOf(Ship);
+      expect(gb.state[6][3].ship).toBeInstanceOf(Ship);
+      expect(gb.state[6][4].ship).toBeInstanceOf(Ship);
+      expect(gb.state[6][5].ship).toBeInstanceOf(Ship);
+      expect(gb.state[6][6].ship).not.toBeInstanceOf(Ship);
     });
   });
 
@@ -94,13 +94,6 @@ describe("placing ships", () => {
   });
 });
 
-describe("removing ships", () => {
-  test("happy case: existing ship", () => {
-    gb.placeShip(2, 0, 0, "h");
-    // gb.removeShip();
-  });
-});
-
 describe("receiving attacks", () => {
   beforeEach(() => {
     gb.placeShip(3, 4, 4, "v");
@@ -109,19 +102,19 @@ describe("receiving attacks", () => {
     test("a ship is not sunk", () => {
       gb.receiveAttack(4, 4);
       gb.receiveAttack(4, 5);
-      expect(gb.board[4][4].ship.isSunk()).toBe(false);
+      expect(gb.state[4][4].ship.isSunk()).toBe(false);
       expect(gb.allShipsSunken()).toBe(false);
     });
     test("a ship is sunk", () => {
       gb.receiveAttack(4, 4);
       gb.receiveAttack(4, 5);
       gb.receiveAttack(4, 6);
-      expect(gb.board[4][4].ship.isSunk()).toBe(true);
+      expect(gb.state[4][4].ship.isSunk()).toBe(true);
       expect(gb.allShipsSunken()).toBe(true);
     });
     test("miss a shot", () => {
       gb.receiveAttack(7, 7);
-      expect(gb.board[7][7].isAttacked).toBe(true);
+      expect(gb.state[7][7].isAttacked).toBe(true);
       expect(gb.allShipsSunken()).toBe(false);
     });
     test("all ships sunken", () => {
@@ -156,14 +149,14 @@ describe("receiving attacks", () => {
       test("ship present", () => {
         gb.receiveAttack(4, 6);
         expect(() => gb.receiveAttack(4, 6)).toThrow(Error);
-        expect(() => gb.board[4][6].ship.isSunk());
+        expect(() => gb.state[4][6].ship.isSunk());
       });
     });
   });
 });
 
 describe("randomizing ships", () => {
-  test.skip("happy case: has existing ships", () => {
+  test("happy case: has existing ships", async () => {
     gb.placeShip(2, 1, 1, "v");
     gb.placeShip(4, 6, 2, "h");
     gb.placeShip(2, 3, 6, "h");
@@ -171,9 +164,9 @@ describe("randomizing ships", () => {
     gb.placeShip(2, 0, 7, "v");
     gb.placeShip(3, 2, 6, "v");
 
-    gb.randomizeShips();
+    expect(async () => await gb.randomizeShips()).not.toThrow(Error);
   });
-  test.skip("edge case: empty board", () => {
-    
+  test("edge case: empty board", () => {
+    expect(async () => await gb.randomizeShips()).not.toThrow(Error);
   });
 });

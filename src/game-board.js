@@ -7,7 +7,19 @@ class GameBoard {
     this.board = Array.from({ length: GameBoard.BOARD_LEN }, () =>
       Array.from({ length: GameBoard.BOARD_LEN }, () => createCell()),
     );
-    this.placedShips = new Set();
+    this.placedShips = new Map();
+  }
+
+  #clear() {
+    this.board = Array.from({ length: GameBoard.BOARD_LEN }, () =>
+      Array.from({ length: GameBoard.BOARD_LEN }, () => createCell()),
+    ); 
+    this.placedShips.clear();
+    this.#numAliveShips = 0;
+  }
+
+  get state() { // an alias
+    return this.board;
   }
 
   /**
@@ -46,20 +58,30 @@ class GameBoard {
         cell.ship = newShip;
       }
     }
-    this.placedShips.add(newShip);
+    this.placedShips.set(newShip.uuid, newShip);
     this.#numAliveShips++;
   }
 
-
-
   async randomizeShips() {
-    this.placedShips.forEach((ship) => {
-      
+    const currentShips = new Map(this.placedShips);
+    this.#clear(); // Clear the board to replace the current ships
+
+    currentShips.forEach((ship) => {
+      let foundValidSpot = false;
+      while (!foundValidSpot) {
+        try {
+          this.placeShip(
+            ship.length,
+            Math.floor(Math.random() * GameBoard.BOARD_LEN),
+            Math.floor(Math.random() * GameBoard.BOARD_LEN),
+            ["h", "v"][Math.floor(Math.random() * 2)]
+          );
+          foundValidSpot = true;
+        } catch(err) {
+          continue;
+        }
+      }
     });
-    // for each ship, 
-    //   remove it. (new method)
-    //   place it with random coordinates and orientation. 
-    //   IF conflicts, try again. (this makes it async)
   }
 
   receiveAttack(col, row) {

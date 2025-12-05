@@ -1,4 +1,5 @@
 class Ship {
+  #uuid = crypto.randomUUID();
   #hits = 0;
   constructor(length) {
     if (typeof length !== "number") throw new TypeError("Length must be a number");
@@ -12,6 +13,10 @@ class Ship {
 
   isSunk() {
     return this.#hits === this.length;
+  }
+
+  get uuid() {
+    return this.#uuid;
   }
 }
 

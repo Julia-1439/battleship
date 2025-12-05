@@ -22,7 +22,7 @@ describe("setting up a game", () => {
     game.start();
 
     // outgoing command messages: test only if they were sent, rather than their effects
-    expect(mockProcessor).toHaveBeenCalledTimes(2); 
+    expect(mockProcessor).toHaveBeenCalledTimes(3); 
     expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); 
     expect(mockProcessor).toHaveBeenCalledWith(1);
   });
