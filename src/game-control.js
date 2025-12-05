@@ -86,6 +86,7 @@ export function playTurn(col, row) {
   }
 }
 
+// @todo make this async
 export function computerPlayTurn() {
   if (!hasBegun()) throw new Error("A game has not started yet");
   if (turn !== 2) throw new Error("It is not the computer's turn yet");
