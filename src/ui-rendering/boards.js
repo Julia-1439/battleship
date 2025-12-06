@@ -119,14 +119,12 @@ game.pubSub.subscribe(game.events.WINNER_DECLARED, showEndResults);
       const col = +btn.dataset.col;
       const row = +btn.dataset.row;
       try {
-        game.playTurn(col, row);
+        const landedHit = game.playTurn(col, row);
+        setStatusMsg(landedHit ? "Landed a hit!" : "Missed!");
       } catch (err) {
         setStatusMsg(err.message);
         return; 
       }
-
-      // valid attack was done
-      // setStatusMsg(""); // @todo write something // NOTE: overrides the winner message
     });
   });
 });

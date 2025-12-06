@@ -93,6 +93,10 @@ export function playTurn(col, row) {
   } else {
     handleWin();
   }
+  
+  // Return the outcome of the attack
+  const attackedCell = opponent.gameBoard.state[col][row];
+  return attackedCell.ship ? 1 : 0;
 }
 
 // @todo make this async
