@@ -66,6 +66,8 @@ export function show() {
 
 export function restart() {
   shipsPlacingPhase = true;
+  attackPhase.startBtn.removeEventListener("click", attackPhase.btnHandlerAgainstComputer);
+  attackPhase.startBtn.removeEventListener("click", attackPhase.btnHandlerAgainstHuman);
 }
 
 /* ========================================================================== */
