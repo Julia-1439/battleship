@@ -73,6 +73,9 @@ class GameBoard {
     this.#numAliveShips++;
   }
 
+  /**
+   * PRECONDITIONS: *no attacks* have been made
+   */
   randomizeShips() {
     const currentShips = new Map(this.placedShips);
     this.#clear(); // Clear the board to replace the current ships
