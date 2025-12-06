@@ -54,6 +54,16 @@ function update(data) {
   });
 }
 
+export function showShips(playerNum) {
+  if (playerNum === null) return;
+  
+  const [currPlayer, otherPlayer] = playerNum === 1 ? [p1, p2] : [p2, p1];
+  otherPlayer.ships.classList.add("invisible-out-flow");
+  otherPlayer.attacks.classList.add("invisible-out-flow");
+  currPlayer.ships.classList.remove("invisible-out-flow");
+  currPlayer.attacks.classList.add("invisible-out-flow");
+}
+
 export function show(turn) {
   if (turn === null) return;
 

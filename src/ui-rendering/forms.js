@@ -1,4 +1,6 @@
 import * as game from "../game-control.js";
+import { show as showShipRandomizer } from "./ship-randomizer.js";
+import { setStatusMsg } from "./status-display.js";
 import { initComputerListener as initComputerAttacker } from "./computer-attacker.js";
 import { initComputerListener as initComputerBoardDisabler } from "./boards.js";
 
@@ -74,6 +76,8 @@ import { initComputerListener as initComputerBoardDisabler } from "./boards.js";
     } 
     game.createPlayers(p1Name, p2Name, isP2Computer);
     game.start();
+    setStatusMsg("Game started! Choose your ships placement");
+    showShipRandomizer();
     // choose not to reset the form so the entered info persists if additional games wish to be played
   });
   cancelBtn.addEventListener("click", () => {

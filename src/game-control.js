@@ -3,6 +3,7 @@ import PubSub from "./pub-sub.js";
 
 let p1;
 let p2;
+export let isP2Computer;
 let turn = null;
 const defaultShipsConfig = new Set([
   [2, 1, 1, "v"],
@@ -35,11 +36,12 @@ function toggleTurn() {
   pubSub.publish(events.TURN_CHANGE, turn);
 }
 
-export function createPlayers(p1Name = "Unnamed Person", p2Name, isP2Computer) {
+export function createPlayers(p1Name = "Unnamed Person", p2Name, _isP2Computer) {
   if (hasBegun()) throw new Error("A game is already in progress");
 
   p1 = humanPlayer(p1Name);
-  p2 = isP2Computer ? computerPlayer() : humanPlayer(p2Name);
+  p2 = _isP2Computer ? computerPlayer() : humanPlayer(p2Name);
+  isP2Computer = _isP2Computer;
 }
 
 export function start() {
@@ -48,7 +50,8 @@ export function start() {
   if (hasBegun()) throw new Error("A game is already in progress");
 
   placeShips();
-  randomizeShips();
+  randomizeShips(1);
+  randomizeShips(2);
   setTurn(1);
 }
 
@@ -64,8 +67,9 @@ function placeShips() {
   });
 }
 
-export function randomizeShips() {
-  [p1, p2].forEach((player) => player.gameBoard.randomizeShips());
+export function randomizeShips(playerNum) {
+  const player = playerNum === 1 ? p1 : p2;
+  player.gameBoard.randomizeShips();
   pubSub.publish(events.BOARD_UPDATE, {
     p1Board: p1.gameBoard.state,
     p2Board: p2.gameBoard.state,
