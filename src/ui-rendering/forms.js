@@ -2,7 +2,7 @@ import * as game from "../game-control.js";
 import { show as showShipRandomizer } from "./ship-randomizer.js";
 import { setStatusMsg } from "./status-display.js";
 import { initComputerListener as initComputerAttacker } from "./computer-attacker.js";
-import { initComputerListener as initComputerBoardDisabler } from "./boards.js";
+import { setBattlefieldTitles, initComputerListener as initComputerBoardDisabler } from "./boards.js";
 
 (function initSetupForm(doc, window) {
   const openDialogBtn = doc.querySelector("#setup-game-btn");
@@ -76,6 +76,7 @@ import { initComputerListener as initComputerBoardDisabler } from "./boards.js";
     } 
     game.createPlayers(p1Name, p2Name, isP2Computer);
     game.start();
+    setBattlefieldTitles(p1Name, isP2Computer ? "Computer" : p2Name);
     setStatusMsg("Game started! Choose your ships placement");
     showShipRandomizer();
     // choose not to reset the form so the entered info persists if additional games wish to be played
