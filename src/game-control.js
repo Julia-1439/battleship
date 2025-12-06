@@ -119,7 +119,7 @@ export function computerPlayTurn() {
 export function clear() {
   p1 = undefined;
   p2 = undefined;
-
+  isP2Computer = undefined;
   setTurn(null);
 }
 

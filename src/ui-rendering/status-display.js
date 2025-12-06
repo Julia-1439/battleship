@@ -3,7 +3,9 @@
  * Utility module used by UI-rendering modules to display messages to the players
  */
 
-const statusMsg = document.querySelector("#status-msg");
+const statusDisplay = document.querySelector("#status-display-container");
+const statusMsg = statusDisplay.querySelector("#status-msg");
+const actionBtnsRow = statusDisplay.querySelector("#game-action-btns-row");
 
 /**
  * 
@@ -14,11 +16,9 @@ export function setStatusMsg(msg) {
   statusMsg.textContent = msg;
 }
 
-/**
- * 
- * @param {HTMLElement} content
- */
-// export function setStatusContent(content) {
-//   statusDisplay.replaceChildren();
-//   statusDisplay.appendChild(content);
-// }
+export function clear() {
+  setStatusMsg("");
+  actionBtnsRow
+    .querySelectorAll("button")
+    .forEach((btn) => btn.classList.add("invisible-out-flow"));
+}

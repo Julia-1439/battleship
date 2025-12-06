@@ -1,8 +1,18 @@
 import * as game from "../game-control.js";
-import { show as showShipRandomizer } from "./ship-randomizer.js";
-import { setStatusMsg } from "./status-display.js";
-import { initComputerListener as initComputerAttacker } from "./computer-attacker.js";
-import { setBattlefieldTitles, initComputerListener as initComputerBoardDisabler } from "./boards.js";
+import {
+  show as showShipRandomizer,
+  restart as restartShipRandomizer,
+} from "./ship-randomizer.js";
+import { setStatusMsg, clear as clearStatusDisplay } from "./status-display.js";
+import {
+  initComputerListener as initComputerAttacker,
+  removeComputerListener as removeComputerAttacker,
+} from "./computer-attacker.js";
+import {
+  setBattlefieldTitles,
+  initComputerListener as initComputerBoardDisabler,
+  removeComputerListener as removeComputerBoardDisabler,
+} from "./boards.js";
 
 (function initSetupForm(doc, window) {
   const openDialogBtn = doc.querySelector("#setup-game-btn");
@@ -52,7 +62,7 @@ import { setBattlefieldTitles, initComputerListener as initComputerBoardDisabler
         if (p2Name.validity.valueMissing) setErrorMsgP2Name();
       }
     });
-    
+
     return {
       setErrorMsgP1Name,
     };
@@ -70,15 +80,25 @@ import { setBattlefieldTitles, initComputerListener as initComputerBoardDisabler
     const p1Name = formData.get("p1Name");
     const p2Name = formData.get("p2Name");
     const isP2Computer = formData.get("isP2Computer") !== null;
+
+    game.clear();
+    game.createPlayers(p1Name, p2Name, isP2Computer);
+    game.start();
+
     if (isP2Computer) {
       initComputerAttacker();
       initComputerBoardDisabler();
-    } 
-    game.createPlayers(p1Name, p2Name, isP2Computer);
-    game.start();
+    } else {
+      // Only has an effect if restarting a game against a computer to be against a human
+      removeComputerAttacker();
+      removeComputerBoardDisabler();
+    }
+    restartShipRandomizer();
+    clearStatusDisplay();
     setBattlefieldTitles(p1Name, isP2Computer ? "Computer" : p2Name);
     setStatusMsg("Game started! Choose your ships placement");
     showShipRandomizer();
+    openDialogBtn.textContent = "Restart Game";
     // choose not to reset the form so the entered info persists if additional games wish to be played
   });
   cancelBtn.addEventListener("click", () => {

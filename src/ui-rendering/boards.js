@@ -109,6 +109,12 @@ export function initComputerListener() {
   });
 }
 
+export function removeComputerListener() {
+  document.removeEventListener("custom:p2ScreenVisible", () => {
+    disableAttacks(p2);
+  });
+}
+
 // @todo render ship nodes
 
 /* ========================================================================== */
