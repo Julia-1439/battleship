@@ -38,7 +38,6 @@ class GameBoard {
     )
       throw new RangeError("Index is out of bounds");
       
-    const newShip = new Ship(shipLen);
     if (orientation === "h") {
       if (col + (shipLen - 1) >= GameBoard.BOARD_LEN)
         throw new RangeError("Ship extends off the board");
@@ -46,7 +45,6 @@ class GameBoard {
         const cell = this.board[col + i][row];
         if (cell.ship !== null)
           throw new Error("Ship collides with another ship");
-        cell.ship = newShip;
       }
     } else if (orientation === "v") {
       if (row + (shipLen - 1) >= GameBoard.BOARD_LEN)
@@ -55,6 +53,19 @@ class GameBoard {
         const cell = this.board[col][row + i];
         if (cell.ship !== null)
           throw new Error("Ship collides with another ship");
+      }
+    }
+
+    // Found a valid placement: place the ship
+    const newShip = new Ship(shipLen);
+    if (orientation === "h") {
+      for (let i = 0; i < shipLen; i++) {
+        const cell = this.board[col + i][row];
+        cell.ship = newShip;
+      }
+    } else if (orientation === "v") {
+      for (let i = 0; i < shipLen; i++) {
+        const cell = this.board[col][row + i];
         cell.ship = newShip;
       }
     }
@@ -62,7 +73,7 @@ class GameBoard {
     this.#numAliveShips++;
   }
 
-  async randomizeShips() {
+  randomizeShips() {
     const currentShips = new Map(this.placedShips);
     this.#clear(); // Clear the board to replace the current ships
 
@@ -78,6 +89,7 @@ class GameBoard {
           );
           foundValidSpot = true;
         } catch(err) {
+          // console.error(err.message);
           continue;
         }
       }
