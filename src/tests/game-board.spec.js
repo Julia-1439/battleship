@@ -155,8 +155,8 @@ describe("receiving attacks", () => {
   });
 });
 
-describe("randomizing ships", () => {
-  test("happy case: has existing ships", async () => {
+describe("randomizing ships (just checking num of ships)", () => {
+  test("happy case: a couple of ships)", () => {
     gb.placeShip(2, 1, 1, "v");
     gb.placeShip(4, 6, 2, "h");
     gb.placeShip(2, 3, 6, "h");
@@ -164,9 +164,23 @@ describe("randomizing ships", () => {
     gb.placeShip(2, 0, 7, "v");
     gb.placeShip(3, 2, 6, "v");
 
-    expect(async () => await gb.randomizeShips()).not.toThrow(Error);
+    gb.randomizeShips();
+    expect(gb.state.flat().reduce((numShips, cell) => numShips += cell.ship ? 1 : 0, 0)).toBe(16);
   });
+  test("happy case: successive randomizations", () => {
+    gb.placeShip(2, 1, 1, "v");
+    gb.placeShip(4, 6, 2, "h");
+    gb.placeShip(2, 3, 6, "h");
+    gb.placeShip(3, 7, 5, "h");
+    gb.placeShip(2, 0, 7, "v");
+    gb.placeShip(3, 2, 6, "v");
+
+    gb.randomizeShips();
+    gb.randomizeShips();
+    gb.randomizeShips();
+    expect(gb.state.flat().reduce((numShips, cell) => numShips += cell.ship ? 1 : 0, 0)).toBe(16);
+  })
   test("edge case: empty board", () => {
-    expect(async () => await gb.randomizeShips()).not.toThrow(Error);
+    expect(gb.state.flat().reduce((numShips, cell) => numShips += cell.ship ? 1 : 0, 0)).toBe(0);
   });
 });
