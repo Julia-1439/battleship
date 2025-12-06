@@ -32,21 +32,24 @@ function update(data) {
       const cell = playerBoard[col][row];
       if (cell.isAttacked || cell.ship) {
         btn.classList.remove("empty");
-        if (cell.isAttacked) btn.classList.add("is-attacked");
-        if (cell.ship) btn.classList.add("your-ship");
       }
+      if (cell.isAttacked) btn.classList.add("is-attacked");
+      else btn.classList.remove("is-attacked");
+      if (cell.ship) btn.classList.add("your-ship");
+      else btn.classList.remove("your-ship");
     });
+    
 
     player.attackBtns.forEach((btn) => {
       const opponentBoard = player === p1 ? data.p2Board : data.p1Board;
       const col = +btn.dataset.col;
       const row = +btn.dataset.row;
       const cell = opponentBoard[col][row];
-      if (cell.isAttacked) {
-        btn.classList.remove("empty");
-        btn.classList.add("is-attacked");
-        if (cell.isAttacked && cell.ship) btn.classList.add("landed-hit");
-      }
+      if (cell.isAttacked) btn.classList.remove("empty");
+      if (cell.isAttacked) btn.classList.add("is-attacked");
+      else btn.classList.remove("is-attacked");
+      if (cell.isAttacked && cell.ship) btn.classList.add("landed-hit");
+      else btn.classList.remove("landed-hit");
     });
   });
 }
