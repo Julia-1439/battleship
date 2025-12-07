@@ -1,7 +1,7 @@
+/* eslint-disable  no-undef -- avoid jest's testing functions being flagged *
 /**
  * More of an integration test than unit test, I believe
  */
-
 import * as game from "../game-control.js";
 import GameBoard from "../game-board.js";
 
@@ -16,8 +16,8 @@ afterEach(() => {
 
 describe("setting up a game", () => {
   test("successful start", () => {
-    const subId1 = game.pubSub.subscribe(game.events.BOARD_UPDATE, mockProcessor); 
-    const subId2 = game.pubSub.subscribe(game.events.TURN_CHANGE, mockProcessor); 
+    game.pubSub.subscribe(game.events.BOARD_UPDATE, mockProcessor); 
+    game.pubSub.subscribe(game.events.TURN_CHANGE, mockProcessor); 
     game.createPlayers("Alice", "Bob");
     game.start();
 
@@ -44,7 +44,7 @@ describe("setting up a game", () => {
 
 describe("playing a game to end", () => {
   test("one human, one computer", () => {
-    const subId = game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor);
+    game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor);
 
     game.createPlayers("Alice", null, true);
     game.start();
@@ -65,7 +65,7 @@ describe("playing a game to end", () => {
   });
   
   test("two humans", () => {
-    const subId = game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor); 
+    game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor); 
 
     game.createPlayers("Alice", "Bob");
     game.start();

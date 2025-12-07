@@ -1,3 +1,4 @@
+/* eslint-disable  no-undef -- avoid jest's testing functions being flagged */
 import GameBoard from "../game-board";
 import Ship from "../ship";
 

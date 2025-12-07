@@ -1,3 +1,4 @@
+/* eslint-disable  no-undef -- avoid jest's testing functions being flagged */
 import Ship from "../ship.js";
 
 describe("public side effects", () => {
