@@ -103,16 +103,14 @@ function disableAttacks(player) {
   player.attackBtns.forEach((btn) => btn.setAttribute("disabled", ""));
 }
 
+const computerDisabler = () => disableAttacks(p2);
+
 export function initComputerListener() {
-  document.addEventListener("custom:p2ScreenVisible", () => {
-    disableAttacks(p2);
-  });
+  document.addEventListener("custom:p2ScreenVisible", computerDisabler);
 }
 
 export function removeComputerListener() {
-  document.removeEventListener("custom:p2ScreenVisible", () => {
-    disableAttacks(p2);
-  });
+  document.removeEventListener("custom:p2ScreenVisible", computerDisabler);
 }
 
 // @todo render ship nodes
