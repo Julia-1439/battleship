@@ -152,13 +152,20 @@ nav ul {
   width: 1rem;
 }
 
-#player-battlefields {
+main {
   display: flex;
   justify-content: center;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   gap: var(--big-padding);
   padding: var(--big-padding);
   background-color: white;
+}
+
+.player-battlefields {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--big-padding);
 }
 
 #status-display-container {
