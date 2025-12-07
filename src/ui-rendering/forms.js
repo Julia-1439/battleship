@@ -82,6 +82,8 @@ import { delay } from "../delayer.js";
     game.createPlayers(p1Name, p2Name, isP2Computer);
     game.start();
 
+    if (game.isP2Computer) initComputerBoardDisabler();
+    else removeComputerBoardDisabler();
     restartShipRandomizer();
     clearStatusDisplay();
     setBattlefieldTitles(p1Name, isP2Computer ? "Computer" : p2Name);
