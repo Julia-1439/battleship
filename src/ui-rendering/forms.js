@@ -13,6 +13,7 @@ import {
   initComputerListener as initComputerBoardDisabler,
   removeComputerListener as removeComputerBoardDisabler,
 } from "./boards.js";
+import { delay } from "../delayer.js";
 
 (function initSetupForm(doc, window) {
   const openDialogBtn = doc.querySelector("#setup-game-btn");
@@ -31,7 +32,7 @@ import {
       p2Name.setCustomValidity("Please fill out the player name");
     }
     function handleP1NameInput() {
-      if (!p1Name.validity.valueMissing) {
+      if (!p1Name.validity.valueMissing || p1Name.trim() === "") {
         p1Name.setCustomValidity("");
       } else {
         setErrorMsgP1Name();
@@ -113,18 +114,18 @@ import {
   const cancelBtn = form.querySelector(".cancel-btn");
 
   game.pubSub.subscribe(game.events.WINNER_DECLARED, async () => {
-    await setTimeout(() => {
-      dialog.showModal();
-    }, 1000);
+    await delay(1000);
+    dialog.showModal();
   });
   game.pubSub.subscribe(game.events.WINNER_DECLARED, (winner) => {
     message.textContent = `${winner.name ? `Player "${winner.name}"` : "The computer"} has won!`;
   });
   form.addEventListener("submit", () => {
-    // @todo
+    dialog.close();
+    const setupGameDialog = doc.querySelector("#setup-game-dialog");
+    setupGameDialog.showModal();
   });
   cancelBtn.addEventListener("click", () => {
-    form.reset();
     dialog.close();
   });
 })(document);
