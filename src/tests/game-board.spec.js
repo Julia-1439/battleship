@@ -166,7 +166,11 @@ describe("randomizing ships (just checking num of ships)", () => {
     gb.placeShip(3, 2, 6, "v");
 
     gb.randomizeShips();
-    expect(gb.state.flat().reduce((numShips, cell) => numShips += cell.ship ? 1 : 0, 0)).toBe(16);
+    expect(
+      gb.state
+        .flat()
+        .reduce((numShips, cell) => (numShips += cell.ship ? 1 : 0), 0),
+    ).toBe(16);
   });
   test("happy case: successive randomizations", () => {
     gb.placeShip(2, 1, 1, "v");
@@ -179,9 +183,17 @@ describe("randomizing ships (just checking num of ships)", () => {
     gb.randomizeShips();
     gb.randomizeShips();
     gb.randomizeShips();
-    expect(gb.state.flat().reduce((numShips, cell) => numShips += cell.ship ? 1 : 0, 0)).toBe(16);
-  })
+    expect(
+      gb.state
+        .flat()
+        .reduce((numShips, cell) => (numShips += cell.ship ? 1 : 0), 0),
+    ).toBe(16);
+  });
   test("edge case: empty board", () => {
-    expect(gb.state.flat().reduce((numShips, cell) => numShips += cell.ship ? 1 : 0, 0)).toBe(0);
+    expect(
+      gb.state
+        .flat()
+        .reduce((numShips, cell) => (numShips += cell.ship ? 1 : 0), 0),
+    ).toBe(0);
   });
 });

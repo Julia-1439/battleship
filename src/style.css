@@ -6,7 +6,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 body {
@@ -62,7 +62,7 @@ html {
   margin: 20vh auto auto auto;
   width: max(40%, 275px);
   padding: var(--big-padding);
-  border-color: var(--palette-accent); 
+  border-color: var(--palette-accent);
   border-radius: 8px;
   box-shadow: 0px 2px 11px -3px gray;
 }
@@ -107,7 +107,12 @@ body {
   margin: 0;
   padding: 0 0 var(--big-padding) 0;
   background: #356063;
-  background: linear-gradient(91deg, rgba(53, 96, 99, 1) 0%, rgba(51, 112, 145, 1) 58%, rgba(47, 117, 196, 1) 100%);
+  background: linear-gradient(
+    91deg,
+    rgba(53, 96, 99, 1) 0%,
+    rgba(51, 112, 145, 1) 58%,
+    rgba(47, 117, 196, 1) 100%
+  );
 }
 
 header {
@@ -149,7 +154,7 @@ nav ul {
 }
 
 #github-link span {
-  display: inline-block; 
+  display: inline-block;
   width: 1rem;
 }
 
@@ -270,7 +275,7 @@ td {
 }
 
 .your-attacks .landed-hit {
-  background-color: #CCFFCC;
+  background-color: #ccffcc;
 }
 
 .is-attacked::before {

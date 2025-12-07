@@ -1,5 +1,5 @@
 /**
- * @module 
+ * @module
  * Utility module used by UI-rendering modules to display messages to the players
  */
 
@@ -8,7 +8,7 @@ const statusMsg = statusDisplay.querySelector("#status-msg");
 const actionBtnsRow = statusDisplay.querySelector("#game-action-btns-row");
 
 /**
- * 
+ *
  * @param {String} msg
  */
 export function setStatusMsg(msg) {

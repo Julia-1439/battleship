@@ -36,7 +36,11 @@ function toggleTurn() {
   pubSub.publish(events.TURN_CHANGE, turn);
 }
 
-export function createPlayers(p1Name = "Unnamed Person", p2Name, _isP2Computer) {
+export function createPlayers(
+  p1Name = "Unnamed Person",
+  p2Name,
+  _isP2Computer,
+) {
   if (hasBegun()) throw new Error("A game is already in progress");
 
   p1 = humanPlayer(p1Name);
@@ -93,7 +97,7 @@ export function playTurn(col, row) {
   } else {
     handleWin();
   }
-  
+
   // Return the outcome of the attack
   const attackedCell = opponent.gameBoard.state[col][row];
   return attackedCell.ship ? 1 : 0;
@@ -102,7 +106,7 @@ export function playTurn(col, row) {
 export function computerPlayTurn() {
   if (!hasBegun()) throw new Error("A game has not started yet");
   if (turn !== 2) throw new Error("It is not the computer's turn yet");
-    
+
   let outcome;
   let foundValidAttack = false;
   while (!foundValidAttack) {

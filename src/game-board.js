@@ -13,12 +13,13 @@ class GameBoard {
   #clear() {
     this.board = Array.from({ length: GameBoard.BOARD_LEN }, () =>
       Array.from({ length: GameBoard.BOARD_LEN }, () => createCell()),
-    ); 
+    );
     this.placedShips.clear();
     this.#numAliveShips = 0;
   }
 
-  get state() { // an alias
+  get state() {
+    // an alias
     return this.board;
   }
 
@@ -37,7 +38,7 @@ class GameBoard {
       row < 0
     )
       throw new RangeError("Index is out of bounds");
-      
+
     if (orientation === "h") {
       if (col + (shipLen - 1) >= GameBoard.BOARD_LEN)
         throw new RangeError("Ship extends off the board");
@@ -88,7 +89,7 @@ class GameBoard {
             ship.length,
             Math.floor(Math.random() * GameBoard.BOARD_LEN),
             Math.floor(Math.random() * GameBoard.BOARD_LEN),
-            ["h", "v"][Math.floor(Math.random() * 2)]
+            ["h", "v"][Math.floor(Math.random() * 2)],
           );
           foundValidSpot = true;
         } catch {
@@ -113,7 +114,7 @@ class GameBoard {
     if (cell.ship) {
       cell.ship.hit();
       if (cell.ship.isSunk()) this.#numAliveShips--;
-    } 
+    }
   }
 
   allShipsSunken() {

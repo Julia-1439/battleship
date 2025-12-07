@@ -1,5 +1,5 @@
 /* eslint-disable  no-undef -- avoid jest's testing functions being flagged */
-import { humanPlayer, computerPlayer, } from "../player.js";
+import { humanPlayer, computerPlayer } from "../player.js";
 import GameBoard from "../game-board.js";
 
 describe("player creation", () => {

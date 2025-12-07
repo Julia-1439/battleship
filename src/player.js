@@ -1,17 +1,11 @@
 import GameBoard from "./game-board";
 
 export function humanPlayer(name) {
-  return Object.assign(
-    player(),
-    { name },
-  );
+  return Object.assign(player(), { name });
 }
 
 export function computerPlayer() {
-  return Object.assign(
-    player(),
-    autoAttacker(),
-  );
+  return Object.assign(player(), autoAttacker());
 }
 
 function player() {

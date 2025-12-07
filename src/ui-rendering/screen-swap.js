@@ -26,7 +26,7 @@ export function hideSwapBtn() {
 
 game.pubSub.subscribe(game.events.TURN_CHANGE, (turn) => {
   if (turn === null) return;
-  if (turn === 2) atGameStart = false; 
+  if (turn === 2) atGameStart = false;
   if (!atGameStart && !game.isP2Computer) displaySwapBtn();
 });
 
@@ -34,11 +34,10 @@ swapScreenBtn.addEventListener("click", async () => {
   hideSwapBtn();
   setStatusMsg("Swapping screens in a moment, look away!");
   await delay(SWAPPING_TIME);
-  const otherScreen = currScreen === 1 ? 2 : 1
+  const otherScreen = currScreen === 1 ? 2 : 1;
   showBoards(otherScreen);
   currScreen = otherScreen;
   setStatusMsg("");
   if (currScreen === 2)
     document.dispatchEvent(new CustomEvent("custom:p2ScreenVisible"));
 });
-

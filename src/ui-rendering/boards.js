@@ -24,8 +24,8 @@ const p2 = {
 };
 
 /**
- * Updates the current player's and opponent's ship board and attack board 
- * @param {*} data 
+ * Updates the current player's and opponent's ship board and attack board
+ * @param {*} data
  */
 function update(data) {
   [p1, p2].forEach((player) => {
@@ -41,7 +41,6 @@ function update(data) {
       if (cell.ship) btn.classList.add("your-ship");
       else btn.classList.remove("your-ship");
     });
-    
 
     player.attackBtns.forEach((btn) => {
       const opponentBoard = player === p1 ? data.p2Board : data.p1Board;
@@ -67,7 +66,7 @@ export function setBattlefieldTitles(p1Name, p2Name) {
 
 export function showShips(playerNum) {
   if (playerNum === null) return;
-  
+
   const [currPlayer, otherPlayer] = playerNum === 1 ? [p1, p2] : [p2, p1];
   otherPlayer.ships.classList.add("invisible-out-flow");
   otherPlayer.attacks.classList.add("invisible-out-flow");
@@ -138,7 +137,7 @@ game.pubSub.subscribe(game.events.WINNER_DECLARED, showEndResults);
         setStatusMsg(landedHit ? "You landed a hit!" : "You missed!");
       } catch (err) {
         setStatusMsg(err.message);
-        return; 
+        return;
       }
     });
   });

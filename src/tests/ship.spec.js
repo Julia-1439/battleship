@@ -3,8 +3,10 @@ import Ship from "../ship.js";
 
 describe("public side effects", () => {
   test("length is set", () => expect(new Ship(4).length).toBe(4));
-  test("length type error", () => expect(() => new Ship("4")).toThrow(TypeError));
-  test("length range error", () => expect(() => new Ship(0)).toThrow(RangeError));
+  test("length type error", () =>
+    expect(() => new Ship("4")).toThrow(TypeError));
+  test("length range error", () =>
+    expect(() => new Ship(0)).toThrow(RangeError));
 });
 
 describe("errors", () => {

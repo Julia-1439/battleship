@@ -16,14 +16,14 @@ afterEach(() => {
 
 describe("setting up a game", () => {
   test("successful start", () => {
-    game.pubSub.subscribe(game.events.BOARD_UPDATE, mockProcessor); 
-    game.pubSub.subscribe(game.events.TURN_CHANGE, mockProcessor); 
+    game.pubSub.subscribe(game.events.BOARD_UPDATE, mockProcessor);
+    game.pubSub.subscribe(game.events.TURN_CHANGE, mockProcessor);
     game.createPlayers("Alice", "Bob");
     game.start();
 
     // outgoing command messages: test only if they were sent, rather than their effects
-    expect(mockProcessor).toHaveBeenCalledTimes(4); 
-    expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); 
+    expect(mockProcessor).toHaveBeenCalledTimes(4);
+    expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object));
     expect(mockProcessor).toHaveBeenCalledWith(1);
   });
 
@@ -31,12 +31,12 @@ describe("setting up a game", () => {
     expect(() => game.start()).toThrow(Error);
   });
   test("unable to start game while a game is started", () => {
-    game.createPlayers("Alice",);
+    game.createPlayers("Alice");
     game.start();
     expect(() => game.start()).toThrow(Error);
   });
   test("unable to create players while a game is started", () => {
-    game.createPlayers("Alice",);
+    game.createPlayers("Alice");
     game.start();
     expect(() => game.createPlayers("Rupert", "Schnitzel")).toThrow(Error);
   });
@@ -54,7 +54,8 @@ describe("playing a game to end", () => {
         try {
           game.playTurn(i, j);
           game.computerPlayTurn();
-        } catch { // stop playing turns once the game has ended
+        } catch {
+          // stop playing turns once the game has ended
           break outer;
         }
       }
@@ -63,9 +64,9 @@ describe("playing a game to end", () => {
     expect(mockProcessor).toHaveBeenCalledTimes(1);
     expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); // outgoing command messages: test only if they were sent, rather than their effects
   });
-  
+
   test("two humans", () => {
-    game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor); 
+    game.pubSub.subscribe(game.events.WINNER_DECLARED, mockProcessor);
 
     game.createPlayers("Alice", "Bob");
     game.start();
@@ -75,13 +76,14 @@ describe("playing a game to end", () => {
         try {
           game.playTurn(i, j); // player 1's turn
           game.playTurn(i, j); // player 2's turn
-        } catch { // stop playing turns once the game has ended
+        } catch {
+          // stop playing turns once the game has ended
           break outer;
         }
       }
     }
 
-    expect(mockProcessor).toHaveBeenCalledTimes(1); 
+    expect(mockProcessor).toHaveBeenCalledTimes(1);
     expect(mockProcessor).toHaveBeenCalledWith(expect.any(Object)); // outgoing command messages: test only if they were sent, rather than their effects
   });
 });
