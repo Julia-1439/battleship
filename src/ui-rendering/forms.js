@@ -31,7 +31,7 @@ import {
       p2Name.setCustomValidity("Please fill out the player name");
     }
     function handleP1NameInput() {
-      if (!p1Name.validity.valueMissing) {
+      if (!p1Name.validity.valueMissing && p1Name.value.trim() !== "") {
         p1Name.setCustomValidity("");
       } else {
         setErrorMsgP1Name();
@@ -39,7 +39,7 @@ import {
       }
     }
     function handleP2NameInput() {
-      if (!p2Name.validity.valueMissing) {
+      if (!p2Name.validity.valueMissing && p2Name.value.trim() !== "") {
         p2Name.setCustomValidity("");
       } else {
         setErrorMsgP2Name();
