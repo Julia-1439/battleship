@@ -7,6 +7,7 @@ Tools used:
 - javascript/html/css
 - workflow enhancements:
   - git branching, merging, rebasing
+  - babel to make jest compatible with es6
   - webpack for bundling and dev/prod environments
   - eslint & prettier for code styling
 
