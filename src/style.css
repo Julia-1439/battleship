@@ -46,6 +46,7 @@ html {
   --minor-padding: 6px;
   --cell-size: 2rem;
   --palette-accent: darkslategray;
+  --ship-border-color: rgb(20, 20, 20);
 }
 
 .invisible-out-flow {
@@ -224,6 +225,10 @@ td {
   background-color: white;
 }
 
+.empty {
+  background-color: #50a3c9;
+}
+
 .your-attacks .battlefield-btn:not([disabled]).empty {
   cursor: pointer;
 }
@@ -246,15 +251,15 @@ td {
 
 .your-ship {
   background-color: #5e5e5e;
-  border: 2px solid rgb(20, 20, 20);
+  border: 2px solid var(--ship-border-color);
 }
 
 .is-attacked {
-  background-color: #FFFFCC;
+  background-color: #ffff99;
 }
 
 .your-ship.is-attacked {
-  background-color: #FFCCCC;
+  background-color: rgb(255, 162, 162);
 }
 
 .your-attacks .landed-hit {
@@ -274,7 +279,7 @@ td {
 }
 
 .your-attacks .landed-hit {
-  border: 2px solid green;
+  border: 2px solid var(--ship-border-color);
 }
 
 .your-attacks .landed-hit::before {
