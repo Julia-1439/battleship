@@ -229,6 +229,12 @@ td {
   background-color: #50a3c9;
 }
 
+.empty::before {
+  content: "•";
+  color: #4182a0;
+  font-size: 1.5rem;
+}
+
 .your-attacks .battlefield-btn:not([disabled]).empty {
   cursor: pointer;
 }
