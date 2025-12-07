@@ -156,7 +156,6 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: var(--big-padding);
   padding: var(--big-padding);
   background-color: white;
 }
