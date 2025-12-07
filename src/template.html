@@ -27,16 +27,16 @@
       </nav>
     </header>
     <main>
-      <div id="player-battlefields">
-        <div id="status-display-container">
-          <p id="status-msg"></p>
-          <p id="game-action-btns-row">
-            <button id="randomize-p1-ships-btn" class="invisible-out-flow">Randomize Ships</button>
-            <button id="randomize-p2-ships-btn" class="invisible-out-flow">Randomize Ships</button>
-            <button id="swap-screen-btn" class="invisible-out-flow">Swap Screen</button>
-            <button id="start-attack-phase-btn" class="invisible-out-flow">Start Attacking!</button>
-          </p>
-        </div>
+      <div id="status-display-container">
+        <p id="status-msg"></p>
+        <p id="game-action-btns-row">
+          <button id="randomize-p1-ships-btn" class="invisible-out-flow">Randomize Ships</button>
+          <button id="randomize-p2-ships-btn" class="invisible-out-flow">Randomize Ships</button>
+          <button id="swap-screen-btn" class="invisible-out-flow">Swap Screen</button>
+          <button id="start-attack-phase-btn" class="invisible-out-flow">Start Attacking!</button>
+        </p>
+      </div>
+      <div class="player-battlefields">
         <table id="p1-ships" class="battlefield your-ships">
           <caption>Your Ships</caption>
           <colgroup>
@@ -362,6 +362,8 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="player-battlefields">
         <table id="p2-ships" class="invisible-out-flow battlefield your-ships">
           <caption>Your Ships</caption>
           <colgroup>
@@ -686,8 +688,8 @@
               <td><button data-row="9" data-col="9" class="battlefield-btn empty"></button></td>
             </tr>
           </tbody>
-        </table>        
-      </div>
+        </table>
+      </div>     
     </main>
   </body>
   <dialog id="setup-game-dialog">
