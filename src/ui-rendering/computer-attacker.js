@@ -11,8 +11,6 @@ async function attack() {
   await delay(THINKING_TIME);
   const landedHit = game.computerPlayTurn();
   setStatusMsg(landedHit ? "Computer landed a hit!" : "Computer missed!");
-  await delay(BUFFER_TIME);
-  setStatusMsg("");
 }
 
 game.pubSub.subscribe(game.events.TURN_CHANGE, (turn) => {
