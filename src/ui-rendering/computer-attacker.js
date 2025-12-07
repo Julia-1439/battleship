@@ -11,7 +11,7 @@ async function attack() {
   await delay(THINKING_TIME);
   const landedHit = game.computerPlayTurn();
   setStatusMsg(landedHit ? "Computer landed a hit!" : "Computer missed!");
-  await delay(THINKING_TIME);
+  await delay(BUFFER_TIME);
   setStatusMsg("");
 }
 
