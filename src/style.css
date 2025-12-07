@@ -246,7 +246,8 @@ td {
 }
 
 .your-ship {
-  background-color: #E5E5FF;
+  background-color: #5e5e5e;
+  border: 2px solid rgb(20, 20, 20);
 }
 
 .is-attacked {
