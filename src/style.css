@@ -47,6 +47,8 @@ html {
   --cell-size: 2rem;
   --palette-accent: darkslategray;
   --ship-border-color: rgb(20, 20, 20);
+
+  font-size: 16px;
 }
 
 .invisible-out-flow {
@@ -121,7 +123,6 @@ header {
   gap: var(--big-padding);
   flex-wrap: no-wrap;
   padding: var(--standard-padding) var(--big-padding);
-  height: 4rem;
   font-size: 1.5rem;
   background-color: var(--palette-accent);
   color: white;
