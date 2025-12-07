@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "npm run test -- --watch",
-    "lint": "eslint ./src/*.js",
+    "lint": "eslint ./src/",
     "format:check": "prettier --check",
     "format:write": "prettier --write",
     "dev": "webpack serve --open --config webpack.dev.js",
