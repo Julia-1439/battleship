@@ -34,9 +34,8 @@ function update(data) {
       const col = +btn.dataset.col;
       const row = +btn.dataset.row;
       const cell = playerBoard[col][row];
-      if (cell.isAttacked || cell.ship) {
-        btn.classList.remove("empty");
-      }
+      if (cell.isAttacked || cell.ship) btn.classList.remove("empty");
+      else btn.classList.add("empty");
       if (cell.isAttacked) btn.classList.add("is-attacked");
       else btn.classList.remove("is-attacked");
       if (cell.ship) btn.classList.add("your-ship");
@@ -50,6 +49,7 @@ function update(data) {
       const row = +btn.dataset.row;
       const cell = opponentBoard[col][row];
       if (cell.isAttacked) btn.classList.remove("empty");
+      else btn.classList.add("empty");
       if (cell.isAttacked) btn.classList.add("is-attacked");
       else btn.classList.remove("is-attacked");
       if (cell.isAttacked && cell.ship) btn.classList.add("landed-hit");
