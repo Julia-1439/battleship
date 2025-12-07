@@ -135,7 +135,7 @@ game.pubSub.subscribe(game.events.WINNER_DECLARED, showEndResults);
       const row = +btn.dataset.row;
       try {
         const landedHit = game.playTurn(col, row);
-        setStatusMsg(landedHit ? "Landed a hit!" : "Missed!");
+        setStatusMsg(landedHit ? "You landed a hit!" : "You missed!");
       } catch (err) {
         setStatusMsg(err.message);
         return; 
