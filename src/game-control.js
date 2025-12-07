@@ -109,7 +109,7 @@ export function computerPlayTurn() {
     const [col, row] = p2.calcRandomAttack();
     try {
       outcome = playTurn(col, row);
-    } catch (err) {
+    } catch {
       continue;
     }
     foundValidAttack = true;

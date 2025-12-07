@@ -91,8 +91,7 @@ class GameBoard {
             ["h", "v"][Math.floor(Math.random() * 2)]
           );
           foundValidSpot = true;
-        } catch(err) {
-          // console.error(err.message);
+        } catch {
           continue;
         }
       }

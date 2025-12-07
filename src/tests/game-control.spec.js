@@ -54,7 +54,7 @@ describe("playing a game to end", () => {
         try {
           game.playTurn(i, j);
           game.computerPlayTurn();
-        } catch (err) { // stop playing turns once the game has ended
+        } catch { // stop playing turns once the game has ended
           break outer;
         }
       }
@@ -75,7 +75,7 @@ describe("playing a game to end", () => {
         try {
           game.playTurn(i, j); // player 1's turn
           game.playTurn(i, j); // player 2's turn
-        } catch (err) { // stop playing turns once the game has ended
+        } catch { // stop playing turns once the game has ended
           break outer;
         }
       }
