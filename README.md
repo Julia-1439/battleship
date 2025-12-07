@@ -32,6 +32,7 @@ Did well:
 - user experience
 
 Room for improvement:
+- more comprehensive unit tests: not only testing the positive case but the complement. in my case, I only tested that ships were placed where they needed to be, but did not test where they should <em>not</em> be
 - more conscious effort in writing pure functions
 - using mocking to test the form inputs
 - simplicity: not using pubsub or custom events. loose coupling is <em>not always</em> good as it can make things harder to read and follow. 
