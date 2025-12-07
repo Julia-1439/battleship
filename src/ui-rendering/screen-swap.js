@@ -37,8 +37,8 @@ swapScreenBtn.addEventListener("click", async () => {
   const otherScreen = currScreen === 1 ? 2 : 1
   showBoards(otherScreen);
   currScreen = otherScreen;
+  setStatusMsg("");
   if (currScreen === 2)
     document.dispatchEvent(new CustomEvent("custom:p2ScreenVisible"));
-  setStatusMsg("");
 });
 

@@ -99,7 +99,6 @@ export function playTurn(col, row) {
   return attackedCell.ship ? 1 : 0;
 }
 
-// @todo make this async
 export function computerPlayTurn() {
   if (!hasBegun()) throw new Error("A game has not started yet");
   if (turn !== 2) throw new Error("It is not the computer's turn yet");
