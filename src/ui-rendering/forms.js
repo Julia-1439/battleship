@@ -5,10 +5,6 @@ import {
 } from "./ship-randomizer.js";
 import { setStatusMsg, clear as clearStatusDisplay } from "./status-display.js";
 import {
-  initComputerListener as initComputerAttacker,
-  removeComputerListener as removeComputerAttacker,
-} from "./computer-attacker.js";
-import {
   setBattlefieldTitles,
   initComputerListener as initComputerBoardDisabler,
   removeComputerListener as removeComputerBoardDisabler,
@@ -86,14 +82,6 @@ import { delay } from "../delayer.js";
     game.createPlayers(p1Name, p2Name, isP2Computer);
     game.start();
 
-    if (isP2Computer) {
-      initComputerAttacker();
-      initComputerBoardDisabler();
-    } else {
-      // Only has an effect if restarting a game against a computer to be against a human
-      removeComputerAttacker();
-      removeComputerBoardDisabler();
-    }
     restartShipRandomizer();
     clearStatusDisplay();
     setBattlefieldTitles(p1Name, isP2Computer ? "Computer" : p2Name);

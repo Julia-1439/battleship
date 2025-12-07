@@ -103,16 +103,18 @@ export function computerPlayTurn() {
   if (!hasBegun()) throw new Error("A game has not started yet");
   if (turn !== 2) throw new Error("It is not the computer's turn yet");
     
+  let outcome;
   let foundValidAttack = false;
   while (!foundValidAttack) {
     const [col, row] = p2.calcRandomAttack();
     try {
-      playTurn(col, row);
+      outcome = playTurn(col, row);
     } catch (err) {
       continue;
     }
     foundValidAttack = true;
   }
+  return outcome;
 }
 
 export function clear() {

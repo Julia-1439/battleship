@@ -27,7 +27,7 @@ export function hideSwapBtn() {
 game.pubSub.subscribe(game.events.TURN_CHANGE, (turn) => {
   if (turn === null) return;
   if (turn === 2) atGameStart = false; 
-  if (!atGameStart) displaySwapBtn();
+  if (!atGameStart && !game.isP2Computer) displaySwapBtn();
 });
 
 swapScreenBtn.addEventListener("click", async () => {
