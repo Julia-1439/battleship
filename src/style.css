@@ -47,8 +47,6 @@ html {
   --cell-size: 2rem;
   --palette-accent: darkslategray;
   --ship-border-color: rgb(20, 20, 20);
-
-  font-size: 16px;
 }
 
 .invisible-out-flow {
@@ -301,6 +299,7 @@ td {
   color: green;
 }
 
+/* Unused */
 .ship-node {
   outline: 2px solid blue;
   position: absolute;
