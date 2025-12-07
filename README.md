@@ -11,8 +11,9 @@ Tools used:
   - eslint & prettier for code styling
 
 Major concepts utilized:
-- test-driven development: unit testing, mocking, some integration tests
-  - following the [minimal unit testing](https://www.youtube.com/watch?v=URSWYvyc42M) framework
+- test-driven development: unit testing, mocking
+  - following the [minimal unit testing](https://www.youtube.com/watch?v=URSWYvyc42M) framework for what to test and what generally not to. testing incoming queries and commands and expectation to send outgoing commands. ignoring private queries and commands and outgoing queries. 
+  - using various types of matchers, doing setup/teardown, using mock functions to detect outgoing command messages
 - OOP principles: single responsibility, loose coupling, dependency inversion
 - organizing code into modules, objects, classes, iifes, factories, and function composition
 - git branching workflow: branching often, merging, rebasing, history overriding, scout pattern
@@ -30,6 +31,8 @@ Did well:
 - user experience
 
 Room for improvement:
+- more conscious effort in writing pure functions
+- using mocking to test the form inputs
 - simplicity: not using pubsub or custom events. loose coupling is <em>not always</em> good as it can make things harder to read and follow. 
 - probably don't need so many safeguards within the game-control module (e.g. playTurn relies on a 'turn' variable). let the safeguards be defined by how the DOM presents interactions to the user. 
 - not be lazy with tests: mid-way through got lazy. would have diagnosed a bug quicker if I thought of a smarter way to test randomized ships. 
