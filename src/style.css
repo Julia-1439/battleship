@@ -42,7 +42,6 @@ html {
   /* Custom CSS properties */
   --standard-padding: 16px;
   --big-padding: 32px;
-  --standard-padding: 16px;
   --minor-padding: 6px;
   --cell-size: 2rem;
   --palette-accent: darkslategray;
@@ -261,12 +260,12 @@ td {
 }
 
 .your-ship {
-  background-color: #5e5e5e;
+  background-color: #515050;
   outline: 2px solid var(--ship-border-color);
 }
 
 .is-attacked {
-  background-color: #ffff99;
+  background-color: #c5c5c5;
 }
 
 .your-ship.is-attacked {
@@ -279,7 +278,7 @@ td {
 
 .is-attacked::before {
   content: "•";
-  color: darkorange;
+  color: rgb(103, 103, 103);
   font-size: 1.5rem;
 }
 
