@@ -1,24 +1,29 @@
 # battleship
 
-A browser Battleship game played against a computer or against another person. Created with test-driven development and SOLID principles. 
+A browser Battleship game played against a computer or against another person. Created with test-driven development and SOLID design principles. 
+
+<img src="./demo.png" alt="" style="width: 75%; text-align: center;"></img>
+
+<img src="./unit-testing-framework.png" alt="" style="width: 75%;"></img>
 
 Tools used: 
 - jest for testing
+  - babel to make jest es6-compatible
+  - Sandi Metz's [minimal unit testing framework](https://www.youtube.com/watch?v=URSWYvyc42M&t=1818s)
 - javascript/html/css
 - workflow enhancements:
-  - git branching, merging, rebasing
-  - babel to make jest compatible with es6
-  - webpack for bundling and dev/prod environments
+  - git branching, merging, rebasing, [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) messages
+  - webpack for bundling in dev or prod environments
   - eslint & prettier for code styling
 
 Major concepts utilized:
 - test-driven development: unit testing, mocking
-  - following the [minimal unit testing](https://www.youtube.com/watch?v=URSWYvyc42M) framework for what to test and what generally not to. testing incoming queries and commands and expectation to send outgoing commands. ignoring private queries and commands and outgoing queries. 
+  - following the Sandi Metz's minimal unit testing framework for what to test and what generally not to. testing incoming queries and commands and expectation to send outgoing commands. ignoring private queries and commands and outgoing queries. 
   - using various types of matchers, doing setup/teardown, using mock functions to detect outgoing command messages
 - OOP principles: single responsibility, loose coupling, dependency inversion
 - organizing code into modules, objects, classes, iifes, factories, and function composition
 - git branching workflow: branching often, merging, rebasing, history overriding, scout pattern
-- following [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) messages
+- following <em>conventional commits</em> messages
 - asynchronous code
 - constraint validation api for custom form validation
 - (overengineering) using pubsub & custom events
