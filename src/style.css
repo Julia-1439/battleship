@@ -48,6 +48,10 @@ html {
   --ship-border-color: rgb(20, 20, 20);
 }
 
+body {
+  min-height: 100vh;
+}
+
 .invisible-out-flow {
   display: none;
 }
